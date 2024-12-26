@@ -72,6 +72,10 @@ module.exports = {
     {
       name: "$PROJECT",
       script: "$PROJECT_PATH/server.js",
+      interpreter: "bun",
+      watch: ["$PROJECT_PATH"],
+      instances: "max",
+      exec_mode: "cluster",
       env: {
 $ENV_VARS
       }
