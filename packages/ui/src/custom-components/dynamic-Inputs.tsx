@@ -1,12 +1,13 @@
 import { Button } from '@workspace/ui/components/button';
 import { Combobox } from '@workspace/ui/custom-components/combobox';
 import { EnhancedInput, EnhancedInputProps } from '@workspace/ui/custom-components/enhanced-input';
+import { cn } from '@workspace/ui/lib/utils';
 import { CircleMinusIcon, CirclePlusIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface FieldConfig extends Omit<EnhancedInputProps, 'type'> {
   name: string;
-  type: 'text' | 'number' | 'select';
+  type: 'text' | 'number' | 'select' | 'time';
   options?: { label: string; value: string }[];
   internal?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,9 +54,9 @@ export function ObjectInput<T extends Record<string, any>>({
   };
 
   return (
-    <div className='flex flex-1 gap-4'>
-      {fields.map(({ name, type, options, ...fieldProps }) => (
-        <div key={name} className='flex-1'>
+    <div className='flex flex-1 flex-wrap gap-4'>
+      {fields.map(({ name, type, options, className, ...fieldProps }) => (
+        <div key={name} className={cn('flex-1', className)}>
           {type === 'select' && options ? (
             <Combobox<string, false>
               placeholder={fieldProps.placeholder}
@@ -126,6 +127,12 @@ export function ArrayInput<T extends Record<string, any>>({
     const modifiedItems = newDisplayItems.filter(isItemModified);
     onChange(modifiedItems);
   };
+
+  useEffect(() => {
+    if (value.length > 0) {
+      setDisplayItems(value);
+    }
+  }, [value]);
 
   return (
     <div className='flex flex-col gap-4'>

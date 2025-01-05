@@ -3,8 +3,10 @@
   "Hour": "Óra",
   "Minute": "Perc",
   "Month": "Hónap",
+  "NoLimit": "Nincs korlát",
   "Year": "Év",
   "all": "Összes",
+  "balanceRecharge": "Egyenlegfeltöltés",
   "billing": {
     "billingTitle": "Termékszámla",
     "couponDiscount": "Kuponkedvezmény",
@@ -15,13 +17,18 @@
     "total": "Teljes ár"
   },
   "buy": "vásárlás",
+  "buyNow": "Vásárolja meg most",
+  "buySubscription": "Előfizetés vásárlása",
   "category": "kategória",
+  "coupon": "Kupon",
   "detail": {
     "availableTraffic": "Elérhető forgalom",
     "connectedDevices": "Egyidejűleg csatlakoztatott IP-k száma",
     "connectionSpeed": "Kapcsolati sebesség",
     "productDetail": "Termék részletei"
   },
+  "enterAmount": "Adja meg a feltöltési összeget",
+  "enterCoupon": "Adja meg a kuponkódot",
   "methods": {
     "alipay_f2f": "Alipay (szemtől szemben)",
     "balance": "Egyenleg",
@@ -29,6 +36,29 @@
     "stripe_alipay": "Stripe (Alipay)",
     "stripe_wechat_pay": "Stripe (WeChat)"
   },
+  "paymentMethod": "Fizetési mód",
   "productDescription": "Termékleírás",
-  "products": "termékek"
+  "products": "termékek",
+  "purchaseDuration": "Vásárlási időtartam",
+  "recharge": "Feltöltés",
+  "rechargeAmount": "Feltöltési összeg",
+  "rechargeDescription": "Egy kattintásos feltöltés, könnyen kezelhető",
+  "rechargeNow": "Töltsd fel most",
+  "renew": "Megújít",
+  "renewSubscription": "Előfizetés megújítása",
+  "resetPrice": "Ár visszaállítása",
+  "resetTraffic": "Forgalom visszaállítása",
+  "resetTrafficDescription": "Forgalmi adatok nullázása és új számlázási ciklus indítása",
+  "resetTrafficTitle": "Forgalom visszaállítása",
+  "unsubscribe": {
+    "availableDeductionAmount": "Elérhető levonási összeg:",
+    "cancel": "Mégse",
+    "confirm": "Megerősít",
+    "confirmUnsubscribe": "Leiratkozás megerősítése",
+    "confirmUnsubscribeDescription": "Biztosan le szeretne iratkozni?",
+    "deductionNote": "Kérjük, vegye figyelembe: Ha most leiratkozik, az előfizetése fennmaradó értéke levonható egyenlegként kerül visszatérítésre a fiókjába, amelyet a következő előfizetés vásárlására vagy megújítására használhat fel.",
+    "failed": "A leiratkozás nem sikerült. Kérjük, próbálja újra.",
+    "success": "Sikeresen leiratkozott.",
+    "unsubscribe": "Leiratkozás"
+  }
 }

@@ -122,9 +122,8 @@ declare namespace API {
   type CreateNodeRequest = {
     name: string;
     server_addr: string;
-    enable_relay: boolean;
-    relay_host: string;
-    relay_port: number;
+    relay_mode: string;
+    relay_node: NodeRelay[];
     speed_limit: number;
     traffic_ratio: number;
     group_id: number;
@@ -172,6 +171,10 @@ declare namespace API {
     server: number[];
     show: boolean;
     sell: boolean;
+    deduction_ratio: number;
+    allow_deduction: boolean;
+    reset_cycle: number;
+    renewal_reset: boolean;
   };
 
   type CreateTicketFollowRequest = {
@@ -371,6 +374,10 @@ declare namespace API {
     search?: string;
   };
 
+  type GetNodeMultiplierResponse = {
+    periods: TimePeriod[];
+  };
+
   type GetNodeServerListRequest = {
     page: number;
     size: number;
@@ -512,6 +519,12 @@ declare namespace API {
     node_push_interval: number;
   };
 
+  type NodeRelay = {
+    host: string;
+    port: number;
+    prefix: string;
+  };
+
   type NodeSortRequest = {
     sort: SortItem[];
   };
@@ -535,6 +548,7 @@ declare namespace API {
     quantity: number;
     price: number;
     amount: number;
+    deduction: number;
     discount: number;
     coupon: string;
     coupon_discount: number;
@@ -555,6 +569,7 @@ declare namespace API {
     quantity: number;
     price: number;
     amount: number;
+    deduction: number;
     discount: number;
     coupon: string;
     coupon_discount: number;
@@ -630,9 +645,8 @@ declare namespace API {
     id: number;
     name: string;
     server_addr: string;
-    enable_relay: boolean;
-    relay_host: string;
-    relay_port: number;
+    relay_mode: string;
+    relay_node: NodeRelay[];
     speed_limit: number;
     traffic_ratio: number;
     group_id: number;
@@ -682,6 +696,10 @@ declare namespace API {
     download: number;
   };
 
+  type SetNodeMultiplierRequest = {
+    periods: TimePeriod[];
+  };
+
   type Shadowsocks = {
     method: string;
     port: number;
@@ -726,6 +744,10 @@ declare namespace API {
     show: boolean;
     sell: boolean;
     sort: number;
+    deduction_ratio: number;
+    allow_deduction: boolean;
+    reset_cycle: number;
+    renewal_reset: boolean;
     created_at: number;
     updated_at: number;
   };
@@ -782,6 +804,12 @@ declare namespace API {
 
   type TicketWaitRelpyResponse = {
     count: number;
+  };
+
+  type TimePeriod = {
+    start_time: string;
+    end_time: string;
+    multiplier: number;
   };
 
   type TosConfig = {
@@ -888,9 +916,8 @@ declare namespace API {
     id: number;
     name: string;
     server_addr: string;
-    enable_relay: boolean;
-    relay_host: string;
-    relay_port: number;
+    relay_mode: string;
+    relay_node: NodeRelay[];
     speed_limit: number;
     traffic_ratio: number;
     group_id: number;
@@ -945,6 +972,10 @@ declare namespace API {
     show: boolean;
     sell: boolean;
     sort: number;
+    deduction_ratio: number;
+    allow_deduction: boolean;
+    reset_cycle: number;
+    renewal_reset: boolean;
   };
 
   type UpdateTicketStatusRequest = {
@@ -977,6 +1008,8 @@ declare namespace API {
     email: string;
     avatar: string;
     balance: number;
+    commission: number;
+    deduction: number;
     telegram: number;
     refer_code: string;
     referer_id: number;
@@ -1034,6 +1067,7 @@ declare namespace API {
     subscribe: Subscribe;
     start_time: number;
     expire_time: number;
+    reset_time: number;
     traffic: number;
     download: number;
     upload: number;

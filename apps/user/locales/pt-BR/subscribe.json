@@ -3,8 +3,10 @@
   "Hour": "Hora",
   "Minute": "Minuto",
   "Month": "Mês",
+  "NoLimit": "Sem Limite",
   "Year": "Ano",
   "all": "todos",
+  "balanceRecharge": "Recarga de Saldo",
   "billing": {
     "billingTitle": "Fatura do Produto",
     "couponDiscount": "Desconto do Cupom",
@@ -15,13 +17,18 @@
     "total": "Preço Total"
   },
   "buy": "Comprar",
+  "buyNow": "Compre Agora",
+  "buySubscription": "Comprar Assinatura",
   "category": "categoria",
+  "coupon": "Cupom",
   "detail": {
     "availableTraffic": "Tráfego disponível",
     "connectedDevices": "Dispositivos conectados simultaneamente",
     "connectionSpeed": "Velocidade de conexão",
     "productDetail": "Detalhes do produto"
   },
+  "enterAmount": "Digite o valor da recarga",
+  "enterCoupon": "Insira o Código do Cupom",
   "methods": {
     "alipay_f2f": "Alipay (cara a cara)",
     "balance": "Saldo",
@@ -29,6 +36,29 @@
     "stripe_alipay": "Stripe (Alipay)",
     "stripe_wechat_pay": "Stripe (WeChat)"
   },
+  "paymentMethod": "Método de Pagamento",
   "productDescription": "Descrição do produto",
-  "products": "produtos"
+  "products": "produtos",
+  "purchaseDuration": "Duração da Compra",
+  "recharge": "Recarregar",
+  "rechargeAmount": "Valor de Recarga",
+  "rechargeDescription": "Recarga com um clique, fácil de manusear",
+  "rechargeNow": "Recarregar Agora",
+  "renew": "Renovar",
+  "renewSubscription": "Renovar Assinatura",
+  "resetPrice": "Redefinir Preço",
+  "resetTraffic": "Redefinir Tráfego",
+  "resetTrafficDescription": "Redefinir o tráfego para zero e iniciar um novo ciclo de faturamento",
+  "resetTrafficTitle": "Redefinir Tráfego",
+  "unsubscribe": {
+    "availableDeductionAmount": "Valor disponível para dedução:",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "confirmUnsubscribe": "Confirmar cancelamento",
+    "confirmUnsubscribeDescription": "Tem certeza de que deseja cancelar a inscrição?",
+    "deductionNote": "Por favor, note: Se você cancelar a assinatura agora, o valor restante da sua assinatura será reembolsado como um saldo dedutível na sua conta, que pode ser usado para sua próxima compra ou renovação de assinatura.",
+    "failed": "Falha ao cancelar a inscrição. Por favor, tente novamente.",
+    "success": "Você cancelou a inscrição com sucesso.",
+    "unsubscribe": "Cancelar inscrição"
+  }
 }

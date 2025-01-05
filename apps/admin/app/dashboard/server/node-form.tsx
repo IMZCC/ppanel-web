@@ -33,14 +33,15 @@ import {
 import { Switch } from '@workspace/ui/components/switch';
 import { Tabs, TabsList, TabsTrigger } from '@workspace/ui/components/tabs';
 import { Combobox } from '@workspace/ui/custom-components/combobox';
+import { ArrayInput } from '@workspace/ui/custom-components/dynamic-Inputs';
 import { EnhancedInput } from '@workspace/ui/custom-components/enhanced-input';
 import { cn } from '@workspace/ui/lib/utils';
 import { unitConversion } from '@workspace/ui/utils';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { formSchema, protocols } from './form-schema';
-
 interface NodeFormProps<T> {
   onSubmit: (data: T) => Promise<boolean> | boolean;
   initialValues?: T;
@@ -55,7 +56,7 @@ export default function NodeForm<T extends { [x: string]: any }>({
   loading,
   trigger,
   title,
-}: NodeFormProps<T>) {
+}: Readonly<NodeFormProps<T>>) {
   const t = useTranslations('server.node');
 
   const [open, setOpen] = useState(false);
@@ -75,6 +76,8 @@ export default function NodeForm<T extends { [x: string]: any }>({
   const protocol = form.watch('protocol');
   const transport = form.watch('config.transport');
   const security = form.watch('config.security');
+  const relayMode = form.watch('relay_mode');
+  const method = form.watch('config.method');
 
   useEffect(() => {
     form?.reset(initialValues);
@@ -105,7 +108,7 @@ export default function NodeForm<T extends { [x: string]: any }>({
           {trigger}
         </Button>
       </SheetTrigger>
-      <SheetContent className='w-[500px] max-w-full md:max-w-screen-md'>
+      <SheetContent className='w-[520px] max-w-full md:max-w-screen-md'>
         <SheetHeader>
           <SheetTitle>{title}</SheetTitle>
         </SheetHeader>
@@ -214,65 +217,6 @@ export default function NodeForm<T extends { [x: string]: any }>({
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name='enable_relay'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('form.enableRelay')}</FormLabel>
-                      <FormControl>
-                        <div className='pt-2'>
-                          <Switch
-                            checked={!!field.value}
-                            onCheckedChange={(value) => {
-                              form.setValue(field.name, value);
-                            }}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='relay_host'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('form.relayHost')}</FormLabel>
-                      <FormControl>
-                        <EnhancedInput
-                          {...field}
-                          onValueChange={(value) => {
-                            form.setValue(field.name, value);
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='relay_port'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('form.relayPort')}</FormLabel>
-                      <FormControl>
-                        <EnhancedInput
-                          {...field}
-                          type='number'
-                          min={1}
-                          max={65535}
-                          onValueChange={(value) => {
-                            form.setValue(field.name, value);
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
               </div>
 
               <FormField
@@ -358,6 +302,7 @@ export default function NodeForm<T extends { [x: string]: any }>({
                           <EnhancedInput
                             {...field}
                             type='number'
+                            placeholder='1-65535'
                             min={1}
                             max={65535}
                             onValueChange={(value) => {
@@ -369,6 +314,30 @@ export default function NodeForm<T extends { [x: string]: any }>({
                       </FormItem>
                     )}
                   />
+                  {[
+                    '2022-blake3-aes-128-gcm',
+                    '2022-blake3-aes-256-gcm',
+                    '2022-blake3-chacha20-poly1305',
+                  ].includes(method) && (
+                    <FormField
+                      control={form.control}
+                      name='config.server_key'
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t('form.serverKey')}</FormLabel>
+                          <FormControl>
+                            <EnhancedInput
+                              {...field}
+                              onValueChange={(value) => {
+                                form.setValue(field.name, value);
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  )}
                 </div>
               )}
 
@@ -389,6 +358,7 @@ export default function NodeForm<T extends { [x: string]: any }>({
                             <EnhancedInput
                               {...field}
                               type='number'
+                              placeholder='1-65535'
                               onValueChange={(value) => {
                                 form.setValue(field.name, value);
                               }}
@@ -499,7 +469,7 @@ export default function NodeForm<T extends { [x: string]: any }>({
                           control={form.control}
                           name='config.transport'
                           render={({ field }) => (
-                            <FormItem className='min-w-32'>
+                            <FormItem className='!mt-0 min-w-32'>
                               <FormControl>
                                 <Select
                                   value={field.value}
@@ -603,7 +573,7 @@ export default function NodeForm<T extends { [x: string]: any }>({
                         control={form.control}
                         name='config.security'
                         render={({ field }) => (
-                          <FormItem className='min-w-32'>
+                          <FormItem className='!mt-0 min-w-32'>
                             <Select
                               value={field.value}
                               onValueChange={(value) => {
@@ -814,6 +784,84 @@ export default function NodeForm<T extends { [x: string]: any }>({
                   </Card>
                 </div>
               )}
+
+              <Card>
+                <CardHeader className='flex flex-row items-center justify-between p-3'>
+                  <CardTitle>{t('form.relayMode')}</CardTitle>
+                  <FormField
+                    control={form.control}
+                    name='relay_mode'
+                    render={({ field }) => (
+                      <FormItem className='!mt-0 min-w-32'>
+                        <FormControl>
+                          <Select
+                            value={field.value}
+                            onValueChange={(value) => {
+                              form.setValue(field.name, value);
+                            }}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder={t('form.selectRelayMode')} />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value='none'>
+                                {t('form.relayModeOptions.none')}
+                              </SelectItem>
+                              <SelectItem value='all'>{t('form.relayModeOptions.all')}</SelectItem>
+                              <SelectItem value='random'>
+                                {t('form.relayModeOptions.random')}
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardHeader>
+                {relayMode !== 'none' && (
+                  <CardContent className='w-full space-y-3 px-3'>
+                    <FormField
+                      control={form.control}
+                      name='relay_node'
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <ArrayInput
+                              fields={[
+                                {
+                                  name: 'host',
+                                  type: 'text',
+                                  placeholder: t('form.relayHost'),
+                                },
+                                {
+                                  name: 'port',
+                                  type: 'number',
+                                  min: 1,
+                                  max: 65535,
+                                  placeholder: t('form.relayPort'),
+                                },
+                                {
+                                  name: 'prefix',
+                                  type: 'text',
+                                  placeholder: t('form.relayPrefix'),
+                                },
+                              ]}
+                              value={field.value}
+                              onChange={(value) => {
+                                form.setValue(field.name, value);
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                )}
+              </Card>
             </form>
           </Form>
         </ScrollArea>
@@ -830,8 +878,12 @@ export default function NodeForm<T extends { [x: string]: any }>({
           <Button
             disabled={loading}
             onClick={form.handleSubmit(handleSubmit, (errors) => {
-              console.log(errors);
-              return errors;
+              const keys = Object.keys(errors);
+              for (const key of keys) {
+                const formattedKey = key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+                toast.error(`${t(`form.${formattedKey}`)} is ${errors[key]?.message}`);
+                return false;
+              }
             })}
           >
             {loading && <Icon icon='mdi:loading' className='mr-2 animate-spin' />}{' '}

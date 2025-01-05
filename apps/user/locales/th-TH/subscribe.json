@@ -3,8 +3,10 @@
   "Hour": "ชั่วโมง",
   "Minute": "นาที",
   "Month": "เดือน",
+  "NoLimit": "ไม่จำกัด",
   "Year": "ปี",
   "all": "ทั้งหมด",
+  "balanceRecharge": "เติมเงินยอดคงเหลือ",
   "billing": {
     "billingTitle": "ใบแจ้งหนี้สินค้า",
     "couponDiscount": "ส่วนลดคูปอง",
@@ -15,13 +17,18 @@
     "total": "ราคารวม"
   },
   "buy": "ซื้อ",
+  "buyNow": "ซื้อเลย",
+  "buySubscription": "ซื้อการสมัครสมาชิก",
   "category": "หมวดหมู่",
+  "coupon": "คูปอง",
   "detail": {
     "availableTraffic": "ปริมาณข้อมูลที่ใช้ได้",
     "connectedDevices": "จำนวนอุปกรณ์ที่เชื่อมต่อพร้อมกัน",
     "connectionSpeed": "ความเร็วในการเชื่อมต่อ",
     "productDetail": "รายละเอียดสินค้า"
   },
+  "enterAmount": "กรอกจำนวนเงินที่ต้องการเติม",
+  "enterCoupon": "กรอกรหัสคูปอง",
   "methods": {
     "alipay_f2f": "อาลีเพย์ (เผชิญหน้า)",
     "balance": "ยอดคงเหลือ",
@@ -29,6 +36,29 @@
     "stripe_alipay": "Stripe (อาลีเพย์)",
     "stripe_wechat_pay": "Stripe (วีแชท)"
   },
+  "paymentMethod": "วิธีการชำระเงิน",
   "productDescription": "รายละเอียดสินค้า",
-  "products": "สินค้า"
+  "products": "สินค้า",
+  "purchaseDuration": "ระยะเวลาการซื้อ",
+  "recharge": "เติมเงิน",
+  "rechargeAmount": "จำนวนเงินเติม",
+  "rechargeDescription": "เติมเงินง่าย ๆ เพียงคลิกเดียว สะดวกสบาย",
+  "rechargeNow": "เติมเงินทันที",
+  "renew": "ต่ออายุ",
+  "renewSubscription": "ต่ออายุการสมัครสมาชิก",
+  "resetPrice": "รีเซ็ตราคา",
+  "resetTraffic": "รีเซ็ตการจราจร",
+  "resetTrafficDescription": "รีเซ็ตการใช้งานข้อมูลให้เป็นศูนย์ และเริ่มรอบบิลใหม่",
+  "resetTrafficTitle": "รีเซ็ตการจราจร",
+  "unsubscribe": {
+    "availableDeductionAmount": "จำนวนเงินที่หักได้:",
+    "cancel": "ยกเลิก",
+    "confirm": "ยืนยัน",
+    "confirmUnsubscribe": "ยืนยันการยกเลิกการสมัคร",
+    "confirmUnsubscribeDescription": "คุณแน่ใจหรือว่าต้องการยกเลิกการสมัคร?",
+    "deductionNote": "โปรดทราบ: หากคุณยกเลิกการสมัครสมาชิกตอนนี้ มูลค่าที่เหลือของการสมัครสมาชิกของคุณจะถูกคืนเป็นยอดคงเหลือที่หักได้ในบัญชีของคุณ ซึ่งสามารถใช้สำหรับการซื้อหรือการต่ออายุการสมัครสมาชิกครั้งถัดไปของคุณได้",
+    "failed": "การยกเลิกการสมัครล้มเหลว กรุณาลองใหม่อีกครั้ง",
+    "success": "คุณได้ยกเลิกการสมัครเรียบร้อยแล้ว",
+    "unsubscribe": "ยกเลิกการสมัคร"
+  }
 }

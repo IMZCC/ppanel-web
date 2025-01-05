@@ -5,21 +5,16 @@ import { Separator } from '@workspace/ui/components/separator';
 import { useTranslations } from 'next-intl';
 
 interface SubscribeBillingProps {
-  order?: {
-    type?: number;
-    subscribe_id?: number;
-    quantity?: number;
-    price?: number;
-    discount?: number;
-    coupon_discount?: number;
-    fee_amount?: number;
-    amount?: number;
-    unit_price?: number;
-    unit_time?: number;
-  };
+  order?: Partial<
+    API.OrderDetail & {
+      unit_price: number;
+      unit_time: number;
+      subscribe_discount: number;
+    }
+  >;
 }
 
-export function SubscribeBilling({ order }: SubscribeBillingProps) {
+export function SubscribeBilling({ order }: Readonly<SubscribeBillingProps>) {
   const t = useTranslations('subscribe');
 
   return (

@@ -3,8 +3,10 @@
   "Hour": "Saat",
   "Minute": "Dakika",
   "Month": "Ay",
+  "NoLimit": "Sınır Yok",
   "Year": "Yıl",
   "all": "Tümü",
+  "balanceRecharge": "Bakiye Yükleme",
   "billing": {
     "billingTitle": "Ürün Faturası",
     "couponDiscount": "Kupon İndirimi",
@@ -15,13 +17,18 @@
     "total": "Toplam Fiyat"
   },
   "buy": "satın al",
+  "buyNow": "Şimdi Satın Al",
+  "buySubscription": "Abonelik Satın Al",
   "category": "kategori",
+  "coupon": "Kupon",
   "detail": {
     "availableTraffic": "Kullanılabilir Trafik",
     "connectedDevices": "Eşzamanlı Bağlı IP Sayısı",
     "connectionSpeed": "Bağlantı Hızı",
     "productDetail": "Ürün Detayları"
   },
+  "enterAmount": "Yükleme tutarını girin",
+  "enterCoupon": "Kupon Kodunu Girin",
   "methods": {
     "alipay_f2f": "Alipay(Yüz Yüze)",
     "balance": "Bakiye",
@@ -29,6 +36,29 @@
     "stripe_alipay": "Stripe(Alipay)",
     "stripe_wechat_pay": "Stripe(WeChat)"
   },
+  "paymentMethod": "Ödeme Yöntemi",
   "productDescription": "Ürün Açıklaması",
-  "products": "ürünler"
+  "products": "ürünler",
+  "purchaseDuration": "Satın Alma Süresi",
+  "recharge": "Yeniden Yükle",
+  "rechargeAmount": "Yükleme Tutarı",
+  "rechargeDescription": "Tek tıkla şarj, kolay kullanım",
+  "rechargeNow": "Şimdi Yükle",
+  "renew": "Yenile",
+  "renewSubscription": "Aboneliği Yenile",
+  "resetPrice": "Fiyatı Sıfırla",
+  "resetTraffic": "Trafiği Sıfırla",
+  "resetTrafficDescription": "Trafiği sıfırlayın ve yeni bir faturalama döngüsü başlatın",
+  "resetTrafficTitle": "Trafiği Sıfırla",
+  "unsubscribe": {
+    "availableDeductionAmount": "Kullanılabilir indirim tutarı:",
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "confirmUnsubscribe": "Abonelikten Çıkmayı Onayla",
+    "confirmUnsubscribeDescription": "Abonelikten çıkmak istediğinizden emin misiniz?",
+    "deductionNote": "Lütfen dikkat: Şimdi abonelikten çıkarsanız, aboneliğinizin kalan değeri hesabınıza indirilebilir bir bakiye olarak iade edilecektir. Bu bakiye, bir sonraki abonelik satın alımınızda veya yenilemenizde kullanılabilir.",
+    "failed": "Abonelikten çıkılamadı. Lütfen tekrar deneyin.",
+    "success": "Başarıyla abonelikten çıktınız.",
+    "unsubscribe": "Abonelikten Çık"
+  }
 }

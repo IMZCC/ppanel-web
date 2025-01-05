@@ -3,8 +3,10 @@
   "Hour": "Giờ",
   "Minute": "Phút",
   "Month": "Tháng",
+  "NoLimit": "Không Giới Hạn",
   "Year": "Năm",
   "all": "Tất cả",
+  "balanceRecharge": "Nạp Tiền Số Dư",
   "billing": {
     "billingTitle": "Hóa đơn sản phẩm",
     "couponDiscount": "Ưu đãi mã giảm giá",
@@ -15,13 +17,18 @@
     "total": "Tổng giá"
   },
   "buy": "Mua",
+  "buyNow": "Mua Ngay",
+  "buySubscription": "Mua Gói Đăng Ký",
   "category": "thể loại",
+  "coupon": "Phiếu giảm giá",
   "detail": {
     "availableTraffic": "Lưu lượng khả dụng",
     "connectedDevices": "Số IP kết nối đồng thời",
     "connectionSpeed": "Tốc độ kết nối",
     "productDetail": "Chi tiết sản phẩm"
   },
+  "enterAmount": "Nhập số tiền nạp",
+  "enterCoupon": "Nhập Mã Phiếu Giảm Giá",
   "methods": {
     "alipay_f2f": "Alipay (mặt đối mặt)",
     "balance": "Số dư",
@@ -29,6 +36,29 @@
     "stripe_alipay": "Stripe (Alipay)",
     "stripe_wechat_pay": "Stripe (WeChat)"
   },
+  "paymentMethod": "Phương thức thanh toán",
   "productDescription": "Mô tả sản phẩm",
-  "products": "Sản phẩm"
+  "products": "Sản phẩm",
+  "purchaseDuration": "Thời Gian Mua Hàng",
+  "recharge": "Nạp tiền",
+  "rechargeAmount": "Số Tiền Nạp",
+  "rechargeDescription": "Nạp tiền chỉ với một cú nhấp, dễ dàng xử lý",
+  "rechargeNow": "Nạp Ngay",
+  "renew": "Gia hạn",
+  "renewSubscription": "Gia hạn đăng ký",
+  "resetPrice": "Đặt lại giá",
+  "resetTraffic": "Đặt lại Lưu lượng",
+  "resetTrafficDescription": "Đặt lại lưu lượng về không và bắt đầu chu kỳ thanh toán mới",
+  "resetTrafficTitle": "Đặt lại Lưu lượng",
+  "unsubscribe": {
+    "availableDeductionAmount": "Số tiền khấu trừ có sẵn:",
+    "cancel": "Hủy bỏ",
+    "confirm": "Xác nhận",
+    "confirmUnsubscribe": "Xác nhận hủy đăng ký",
+    "confirmUnsubscribeDescription": "Bạn có chắc chắn muốn hủy đăng ký không?",
+    "deductionNote": "Xin lưu ý: Nếu bạn hủy đăng ký ngay bây giờ, giá trị còn lại của đăng ký sẽ được hoàn trả dưới dạng số dư có thể khấu trừ vào tài khoản của bạn, số dư này có thể được sử dụng cho lần mua hoặc gia hạn đăng ký tiếp theo.",
+    "failed": "Hủy đăng ký không thành công. Vui lòng thử lại.",
+    "success": "Bạn đã hủy đăng ký thành công.",
+    "unsubscribe": "Hủy đăng ký"
+  }
 }

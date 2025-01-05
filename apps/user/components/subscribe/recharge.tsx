@@ -23,8 +23,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react';
 
-export default function Recharge(props: ButtonProps) {
-  const t = useTranslations('order');
+export default function Recharge(props: Readonly<ButtonProps>) {
+  const t = useTranslations('subscribe');
   const { common } = useGlobalStore();
   const { currency } = common;
 
@@ -38,6 +38,7 @@ export default function Recharge(props: ButtonProps) {
   });
 
   const { data: paymentMethods } = useQuery({
+    enabled: open,
     queryKey: ['getAvailablePaymentMethods'],
     queryFn: async () => {
       const { data } = await getAvailablePaymentMethods();
@@ -62,7 +63,7 @@ export default function Recharge(props: ButtonProps) {
       <DialogContent className='flex h-full flex-col overflow-hidden md:h-auto'>
         <DialogHeader>
           <DialogTitle>{t('balanceRecharge')}</DialogTitle>
-          <DialogDescription>{t('description')}</DialogDescription>
+          <DialogDescription>{t('rechargeDescription')}</DialogDescription>
         </DialogHeader>
         <div className='flex flex-col justify-between text-sm'>
           <div className='grid gap-3'>

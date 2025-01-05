@@ -4,17 +4,15 @@ import { Display } from '@/components/display';
 import { useTranslations } from 'next-intl';
 
 interface SubscribeDetailProps {
-  subscribe?: {
-    traffic?: number | null;
-    speed_limit?: number | null;
-    device_limit?: number | null;
-    name?: string | null;
-    quantity?: number | null;
-    unit_price?: number | null;
-  };
+  subscribe?: Partial<
+    API.Subscribe & {
+      name: string;
+      quantity: number;
+    }
+  >;
 }
 
-export function SubscribeDetail({ subscribe }: SubscribeDetailProps) {
+export function SubscribeDetail({ subscribe }: Readonly<SubscribeDetailProps>) {
   const t = useTranslations('subscribe.detail');
 
   return (

@@ -162,6 +162,12 @@ declare namespace API {
     node_push_interval: number;
   };
 
+  type NodeRelay = {
+    host: string;
+    port: number;
+    prefix: string;
+  };
+
   type NodeStatus = {
     online_users: OnlineUser[];
     status: ServerStatus;
@@ -181,6 +187,7 @@ declare namespace API {
     quantity: number;
     price: number;
     amount: number;
+    deduction: number;
     discount: number;
     coupon: string;
     coupon_discount: number;
@@ -201,6 +208,7 @@ declare namespace API {
     quantity: number;
     price: number;
     amount: number;
+    deduction: number;
     discount: number;
     coupon: string;
     coupon_discount: number;
@@ -231,6 +239,7 @@ declare namespace API {
     price: number;
     amount: number;
     discount: number;
+    deduction: number;
     coupon: string;
     coupon_discount: number;
     fee_amount: number;
@@ -238,6 +247,14 @@ declare namespace API {
 
   type PreRenewalOrderResponse = {
     orderNo: string;
+  };
+
+  type PreUnsubscribeRequest = {
+    id: number;
+  };
+
+  type PreUnsubscribeResponse = {
+    deduction_amount: number;
   };
 
   type PurchaseOrderRequest = {
@@ -316,8 +333,22 @@ declare namespace API {
     total: number;
   };
 
-  type QueryUserAffiliateResponse = {
-    sum: number;
+  type QueryUserAffiliateCountResponse = {
+    registers: number;
+    total_commission: number;
+  };
+
+  type QueryUserAffiliateListParams = {
+    page: number;
+    size: number;
+  };
+
+  type QueryUserAffiliateListRequest = {
+    page: number;
+    size: number;
+  };
+
+  type QueryUserAffiliateListResponse = {
     list: UserAffiliate[];
     total: number;
   };
@@ -353,11 +384,10 @@ declare namespace API {
   };
 
   type RenewalOrderRequest = {
-    subscribe_id: number;
+    user_subscribe_id: number;
     quantity: number;
     payment: string;
     coupon?: string;
-    subscribe_token: string;
   };
 
   type RenewalOrderResponse = {
@@ -365,8 +395,7 @@ declare namespace API {
   };
 
   type ResetTrafficOrderRequest = {
-    subscribe_id: number;
-    subscribe_token: string;
+    user_subscribe_id: number;
     payment: string;
   };
 
@@ -398,9 +427,8 @@ declare namespace API {
     id: number;
     name: string;
     server_addr: string;
-    enable_relay: boolean;
-    relay_host: string;
-    relay_port: number;
+    relay_mode: string;
+    relay_node: NodeRelay[];
     speed_limit: number;
     traffic_ratio: number;
     group_id: number;
@@ -471,6 +499,10 @@ declare namespace API {
     show: boolean;
     sell: boolean;
     sort: number;
+    deduction_ratio: number;
+    allow_deduction: boolean;
+    reset_cycle: number;
+    renewal_reset: boolean;
     created_at: number;
     updated_at: number;
   };
@@ -517,6 +549,12 @@ declare namespace API {
     updated_at: number;
   };
 
+  type TimePeriod = {
+    start_time: string;
+    end_time: string;
+    multiplier: number;
+  };
+
   type TosConfig = {
     tos_content: string;
   };
@@ -538,6 +576,10 @@ declare namespace API {
   type Tuic = {
     port: number;
     security_config: SecurityConfig;
+  };
+
+  type UnsubscribeRequest = {
+    id: number;
   };
 
   type UpdateUserNotifyRequest = {
@@ -567,6 +609,8 @@ declare namespace API {
     email: string;
     avatar: string;
     balance: number;
+    commission: number;
+    deduction: number;
     telegram: number;
     refer_code: string;
     referer_id: number;
@@ -610,6 +654,7 @@ declare namespace API {
     subscribe: Subscribe;
     start_time: number;
     expire_time: number;
+    reset_time: number;
     traffic: number;
     download: number;
     upload: number;

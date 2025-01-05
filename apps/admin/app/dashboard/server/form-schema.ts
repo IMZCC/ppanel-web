@@ -36,6 +36,7 @@ const baseProtocolSchema = z.object({
 const shadowsocksSchema = z.object({
   method: z.string(),
   port: portSchema,
+  server_key: nullableString,
 });
 
 const vmessSchema = baseProtocolSchema;
@@ -51,11 +52,13 @@ const hysteria2Schema = z.object({
   hop_ports: nullableString,
   hop_interval: z.number().nullish(),
   obfs_password: nullableString,
+  security: z.string(),
   security_config: securityConfigSchema,
 });
 
 const tuicSchema = z.object({
   port: portSchema,
+  security: z.string(),
   security_config: securityConfigSchema,
 });
 
@@ -92,9 +95,17 @@ const baseFormSchema = z.object({
   speed_limit: z.number().nullish(),
   traffic_ratio: z.number().default(1),
   group_id: z.number().nullish(),
-  enable_relay: z.boolean().nullish().default(false),
-  relay_host: nullableString,
-  relay_port: portSchema,
+  relay_mode: z.string().nullish().default('none'),
+  relay_node: z
+    .array(
+      z.object({
+        host: z.string(),
+        port: portSchema,
+        prefix: z.string().nullish(),
+      }),
+    )
+    .nullish()
+    .default([]),
 });
 
 export const formSchema = z.intersection(baseFormSchema, protocolConfigSchema);
