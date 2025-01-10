@@ -135,7 +135,7 @@ export default function NodeTable() {
           accessorKey: 'speed_limit',
           header: t('speedLimit'),
           cell: ({ row }) => (
-            <Display type='traffic' value={row.getValue('speed_limit')} unlimited />
+            <Display type='trafficSpeed' value={row.getValue('speed_limit')} unlimited />
           ),
         },
         {
@@ -145,10 +145,10 @@ export default function NodeTable() {
         },
 
         {
-          accessorKey: 'groupId',
+          accessorKey: 'group_id',
           header: t('nodeGroup'),
           cell: ({ row }) => {
-            const name = groups?.find((group) => group.id === row.getValue('groupId'))?.name;
+            const name = groups?.find((group) => group.id === row.getValue('group_id'))?.name;
             return name ? <Badge variant='outline'>{name}</Badge> : '--';
           },
         },

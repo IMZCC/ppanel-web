@@ -27,7 +27,7 @@ interface UnsubscribeProps {
 export default function Unsubscribe({ id, allowDeduction }: Readonly<UnsubscribeProps>) {
   const t = useTranslations('subscribe.unsubscribe');
   const router = useRouter();
-  const { common } = useGlobalStore();
+  const { common, getUserInfo } = useGlobalStore();
   const single_model = common.subscribe.single_model;
 
   const [open, setOpen] = useState(false);
@@ -51,6 +51,7 @@ export default function Unsubscribe({ id, allowDeduction }: Readonly<Unsubscribe
       );
       toast.success(t('success'));
       router.refresh();
+      await getUserInfo();
       setOpen(false);
     } catch (error) {
       toast.error(t('failed'));
@@ -71,11 +72,11 @@ export default function Unsubscribe({ id, allowDeduction }: Readonly<Unsubscribe
           <DialogTitle>{t('confirmUnsubscribe')}</DialogTitle>
           <DialogDescription>{t('confirmUnsubscribeDescription')}</DialogDescription>
         </DialogHeader>
-        <p>{t('availableDeductionAmount')}</p>
+        <p>{t('residualValue')}</p>
         <p className='text-primary text-2xl font-semibold'>
           <Display type='currency' value={data} />
         </p>
-        <p className='text-muted-foreground text-sm'>{t('deductionNote')}</p>
+        <p className='text-muted-foreground text-sm'>{t('unsubscribeDescription')}</p>
         <DialogFooter>
           <Button variant='outline' onClick={() => setOpen(false)}>
             {t('cancel')}
