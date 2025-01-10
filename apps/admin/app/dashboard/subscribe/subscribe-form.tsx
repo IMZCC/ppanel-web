@@ -219,13 +219,13 @@ export default function SubscribeForm<T extends Record<string, any>>({
                         name='group_id'
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>{t('form.subscribeGroup')}</FormLabel>
+                            <FormLabel>{t('form.groupId')}</FormLabel>
                             <FormControl>
                               <Combobox<number, false>
                                 placeholder={t('form.selectSubscribeGroup')}
                                 {...field}
                                 onChange={(value) => {
-                                  form.setValue(field.name, value);
+                                  form.setValue(field.name, value || 0);
                                 }}
                                 options={group?.map((item) => ({
                                   label: item.name,
@@ -277,7 +277,7 @@ export default function SubscribeForm<T extends Record<string, any>>({
                                 {...field}
                                 formatInput={(value) => unitConversion('bitsToMb', value)}
                                 formatOutput={(value) => unitConversion('mbToBits', value)}
-                                suffix='MB'
+                                suffix='Mbps'
                                 onValueChange={(value) => {
                                   form.setValue(field.name, value);
                                 }}

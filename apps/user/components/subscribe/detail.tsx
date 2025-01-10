@@ -36,7 +36,7 @@ export function SubscribeDetail({ subscribe }: Readonly<SubscribeDetailProps>) {
         <li>
           <span className='text-muted-foreground'>{t('connectionSpeed')}</span>
           <span>
-            <Display type='traffic' value={subscribe?.speed_limit} unlimited />
+            <Display type='trafficSpeed' value={subscribe?.speed_limit} unlimited />
           </span>
         </li>
         <li>

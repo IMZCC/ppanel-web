@@ -142,6 +142,7 @@ declare namespace API {
     discount?: number;
     coupon?: string;
     coupon_discount?: number;
+    commission: number;
     fee_amount: number;
     method?: string;
     trade_no?: string;
@@ -192,6 +193,8 @@ declare namespace API {
     referer_user: string;
     refer_code: string;
     balance: number;
+    commission: number;
+    gift_amount: number;
     is_admin: boolean;
   };
 
@@ -548,10 +551,11 @@ declare namespace API {
     quantity: number;
     price: number;
     amount: number;
-    deduction: number;
+    gift_amount: number;
     discount: number;
     coupon: string;
     coupon_discount: number;
+    commission?: number;
     method: string;
     fee_amount: number;
     trade_no: string;
@@ -569,10 +573,11 @@ declare namespace API {
     quantity: number;
     price: number;
     amount: number;
-    deduction: number;
+    gift_amount: number;
     discount: number;
     coupon: string;
     coupon_discount: number;
+    commission?: number;
     method: string;
     fee_amount: number;
     trade_no: string;
@@ -989,6 +994,8 @@ declare namespace API {
     password: string;
     avatar: string;
     balance: number;
+    commission: number;
+    gift_amount: number;
     telegram: number;
     refer_code: string;
     referer_id: number;
@@ -1009,7 +1016,7 @@ declare namespace API {
     avatar: string;
     balance: number;
     commission: number;
-    deduction: number;
+    gift_amount: number;
     telegram: number;
     refer_code: string;
     referer_id: number;

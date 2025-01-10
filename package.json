@@ -1,6 +1,6 @@
 {
   "name": "ppanel-web",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "private": true,
   "homepage": "https://github.com/perfect-panel/ppanel-web",
   "bugs": {
@@ -54,13 +54,13 @@
     "@workspace/prettier-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "husky": "^9.1.7",
-    "lint-staged": "^15.2.11",
+    "lint-staged": "^15.3.0",
     "semantic-release": "21.1.2",
     "semantic-release-config-gitmoji": "^1.5.3",
     "turbo": "^2.3.3",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   },
-  "packageManager": "bun@1.1.42",
+  "packageManager": "bun@1.1.43",
   "engines": {
     "node": ">=20"
   }
