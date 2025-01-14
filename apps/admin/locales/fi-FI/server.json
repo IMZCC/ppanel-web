@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "Lisää Aikaväli",
+    "communicationKey": "Viestintäavain",
+    "communicationKeyDescription": "Avain solmujen viestintään tietoturvan varmistamiseksi",
+    "delete": "Poista",
+    "dynamicMultiplier": "Dynaaminen Kerroin",
+    "dynamicMultiplierDescription": "Dynaaminen kerroin tarkoittaa työnnetyn datan käsittelyä eri kertoimilla eri solmuille eri ajanjaksoina.",
+    "endTime": "Lopetusaika",
+    "inputPlaceholder": "Syötä",
+    "multiplier": "Kerroin",
+    "nodePullInterval": "Solmun Noutoväli",
+    "nodePullIntervalDescription": "Taajuus (sekunteina), jolla solmut hakevat dataa paneelista",
+    "nodePushInterval": "Solmun Työntövälit",
+    "nodePushIntervalDescription": "Taajuus, jolla solmut työntävät dataa paneeliin",
+    "reset": "Nollaa",
+    "save": "Tallenna",
+    "saveSuccess": "Tallennus Onnistui",
+    "startTime": "Aloitusaika",
+    "timeSlot": "Aikaväli"
+  },
   "group": {
     "actions": "Toiminnot",
     "cancel": "Peruuta",
@@ -100,6 +120,8 @@
       "serverName": "Palvelimen nimi",
       "speedLimit": "Nopeusrajoitus",
       "speedLimitPlaceholder": "Ei rajoitusta",
+      "tags": "Tunnisteet",
+      "tagsPlaceholder": "Käytä Enteriä tai pilkkua (,) syöttääksesi useita tunnisteita",
       "trafficRatio": "Liikenteen nopeus",
       "transport": "Siirtoprotokolla",
       "transportConfig": "Siirtoprotokollan asetukset",
@@ -120,6 +142,7 @@
     "serverAddr": "Palvelimen osoite",
     "speedLimit": "Nopeusrajoitus",
     "status": "Tila",
+    "tags": "Tunnisteet",
     "trafficRatio": "Liikenteen nopeus",
     "type": "Tyyppi",
     "updateSuccess": "Päivitys onnistui",
@@ -127,6 +150,7 @@
   },
   "tabs": {
     "node": "Solmu",
+    "nodeConfig": "Solmun asetukset",
     "nodeGroup": "Solmuryhmä"
   }
 }

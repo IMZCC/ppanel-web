@@ -46,6 +46,14 @@ declare namespace API {
     orderNo: string;
   };
 
+  type CommissionLog = {
+    id: number;
+    user_id: number;
+    order_no: string;
+    amount: number;
+    created_at: number;
+  };
+
   type Coupon = {
     id: number;
     name: string;
@@ -360,6 +368,21 @@ declare namespace API {
     total: number;
   };
 
+  type QueryUserCommissionLogListRequest = {
+    page: number;
+    size: number;
+  };
+
+  type QueryUserCommissionLogListResponse = {
+    list: CommissionLog[];
+    total: number;
+  };
+
+  type QueryUserCommissionLogParams = {
+    page: number;
+    size: number;
+  };
+
   type QueryUserSubscribeListResponse = {
     list: UserSubscribe[];
     total: number;
@@ -383,6 +406,7 @@ declare namespace API {
     enable_ip_register_limit: boolean;
     ip_register_limit: number;
     ip_register_limit_duration: number;
+    sms: SmsAuthenticateConfig;
   };
 
   type RenewalOrderRequest = {
@@ -427,6 +451,7 @@ declare namespace API {
 
   type Server = {
     id: number;
+    tags: string[];
     name: string;
     server_addr: string;
     relay_mode: string;
@@ -469,6 +494,26 @@ declare namespace API {
     site_name: string;
     site_desc: string;
     site_logo: string;
+  };
+
+  type SmsAuthenticateConfig = {
+    sms_enabled: boolean;
+    sms_limit: number;
+    sms_interval: number;
+    sms_expire_time: number;
+  };
+
+  type SmsConfig = {
+    sms_enabled: boolean;
+    sms_key: string;
+    sms_secret: string;
+    sms_template: string;
+    sms_template_code: string;
+    sms_template_param: string;
+    sms_platform: string;
+    sms_limit: number;
+    sms_interval: number;
+    sms_expire_time: number;
   };
 
   type SortItem = {
@@ -609,6 +654,8 @@ declare namespace API {
   type User = {
     id: number;
     email: string;
+    telephone: string;
+    telephone_area_code: string;
     avatar: string;
     balance: number;
     commission: number;

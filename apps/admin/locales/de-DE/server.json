@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "Zeitfenster hinzufügen",
+    "communicationKey": "Kommunikationsschlüssel",
+    "communicationKeyDescription": "Schlüssel für die Knotenkommunikation zur Gewährleistung der Datensicherheit",
+    "delete": "Löschen",
+    "dynamicMultiplier": "Dynamischer Multiplikator",
+    "dynamicMultiplierDescription": "Dynamischer Multiplikator bezieht sich auf die Verarbeitung von übertragenen Daten mit unterschiedlichen Multiplikatoren für verschiedene Knoten während unterschiedlicher Zeiträume.",
+    "endTime": "Endzeit",
+    "inputPlaceholder": "Eingeben",
+    "multiplier": "Multiplikator",
+    "nodePullInterval": "Knotenabfrageintervall",
+    "nodePullIntervalDescription": "Häufigkeit (in Sekunden), mit der Knoten Daten vom Panel abrufen",
+    "nodePushInterval": "Knotenübertragungsintervall",
+    "nodePushIntervalDescription": "Häufigkeit, mit der Knoten Daten an das Panel übertragen",
+    "reset": "Zurücksetzen",
+    "save": "Speichern",
+    "saveSuccess": "Erfolgreich gespeichert",
+    "startTime": "Startzeit",
+    "timeSlot": "Zeitfenster"
+  },
   "group": {
     "actions": "Aktionen",
     "cancel": "Abbrechen",
@@ -100,6 +120,8 @@
       "serverName": "Dienstname",
       "speedLimit": "Geschwindigkeitsbegrenzung",
       "speedLimitPlaceholder": "Keine Begrenzung",
+      "tags": "Tags",
+      "tagsPlaceholder": "Verwenden Sie die Eingabetaste oder das Komma (,), um mehrere Tags einzugeben",
       "trafficRatio": "Verkehrsrate",
       "transport": "Transportprotokoll",
       "transportConfig": "Transportprotokollkonfiguration",
@@ -120,6 +142,7 @@
     "serverAddr": "Serveradresse",
     "speedLimit": "Geschwindigkeitsbegrenzung",
     "status": "Status",
+    "tags": "Stichwörter",
     "trafficRatio": "Verkehrsrate",
     "type": "Typ",
     "updateSuccess": "Erfolgreich aktualisiert",
@@ -127,6 +150,7 @@
   },
   "tabs": {
     "node": "Knoten",
+    "nodeConfig": "Knoten-Konfiguration",
     "nodeGroup": "Knotengruppe"
   }
 }

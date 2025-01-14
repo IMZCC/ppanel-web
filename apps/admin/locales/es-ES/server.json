@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "Agregar Franja Horaria",
+    "communicationKey": "Clave de Comunicación",
+    "communicationKeyDescription": "Clave para la comunicación de nodos para garantizar la seguridad de los datos",
+    "delete": "Eliminar",
+    "dynamicMultiplier": "Multiplicador Dinámico",
+    "dynamicMultiplierDescription": "El Multiplicador Dinámico se refiere al procesamiento de datos enviados con diferentes multiplicadores para diferentes nodos durante distintos períodos de tiempo.",
+    "endTime": "Hora de Fin",
+    "inputPlaceholder": "Ingresar",
+    "multiplier": "Multiplicador",
+    "nodePullInterval": "Intervalo de Extracción de Nodo",
+    "nodePullIntervalDescription": "Frecuencia (en segundos) para que los nodos obtengan datos del panel",
+    "nodePushInterval": "Intervalo de Envío de Nodo",
+    "nodePushIntervalDescription": "Frecuencia para que los nodos envíen datos al panel",
+    "reset": "Restablecer",
+    "save": "Guardar",
+    "saveSuccess": "Guardado Exitoso",
+    "startTime": "Hora de Inicio",
+    "timeSlot": "Franja Horaria"
+  },
   "group": {
     "actions": "Acciones",
     "cancel": "Cancelar",
@@ -100,6 +120,8 @@
       "serverName": "Nombre del servicio",
       "speedLimit": "Límite de velocidad",
       "speedLimitPlaceholder": "Sin límite",
+      "tags": "Etiquetas",
+      "tagsPlaceholder": "Usa Enter o coma (,) para ingresar múltiples etiquetas",
       "trafficRatio": "Tasa de tráfico",
       "transport": "Protocolo de transporte",
       "transportConfig": "Configuración del protocolo de transporte",
@@ -120,6 +142,7 @@
     "serverAddr": "Dirección del servidor",
     "speedLimit": "Límite de velocidad",
     "status": "Estado",
+    "tags": "Etiquetas",
     "trafficRatio": "Tasa de tráfico",
     "type": "Tipo",
     "updateSuccess": "Actualización exitosa",
@@ -127,6 +150,7 @@
   },
   "tabs": {
     "node": "Nodo",
+    "nodeConfig": "Configuración del Nodo",
     "nodeGroup": "Grupo de nodos"
   }
 }

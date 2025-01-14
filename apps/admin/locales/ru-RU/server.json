@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "Добавить временной интервал",
+    "communicationKey": "Ключ связи",
+    "communicationKeyDescription": "Ключ для связи узлов для обеспечения безопасности данных",
+    "delete": "Удалить",
+    "dynamicMultiplier": "Динамический множитель",
+    "dynamicMultiplierDescription": "Динамический множитель относится к обработке переданных данных с различными множителями для разных узлов в разные периоды времени.",
+    "endTime": "Время окончания",
+    "inputPlaceholder": "Введите",
+    "multiplier": "Множитель",
+    "nodePullInterval": "Интервал опроса узла",
+    "nodePullIntervalDescription": "Частота (в секундах) опроса узлами данных с панели",
+    "nodePushInterval": "Интервал отправки узла",
+    "nodePushIntervalDescription": "Частота отправки данных узлами на панель",
+    "reset": "Сбросить",
+    "save": "Сохранить",
+    "saveSuccess": "Сохранение успешно",
+    "startTime": "Время начала",
+    "timeSlot": "Временной интервал"
+  },
   "group": {
     "actions": "Действия",
     "cancel": "Отмена",
@@ -100,6 +120,8 @@
       "serverName": "Имя сервера",
       "speedLimit": "Ограничение скорости",
       "speedLimitPlaceholder": "Без ограничений",
+      "tags": "Теги",
+      "tagsPlaceholder": "Используйте Enter или запятую (,), чтобы ввести несколько тегов",
       "trafficRatio": "Коэффициент трафика",
       "transport": "Транспортный протокол",
       "transportConfig": "Настройки транспортного протокола",
@@ -120,6 +142,7 @@
     "serverAddr": "Адрес сервера",
     "speedLimit": "Ограничение скорости",
     "status": "Статус",
+    "tags": "Теги",
     "trafficRatio": "Коэффициент трафика",
     "type": "Тип",
     "updateSuccess": "Успешно обновлено",
@@ -127,6 +150,7 @@
   },
   "tabs": {
     "node": "Узел",
+    "nodeConfig": "Конфигурация узла",
     "nodeGroup": "Группа узлов"
   }
 }

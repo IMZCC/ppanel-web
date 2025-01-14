@@ -17,6 +17,8 @@
   "email": "Email",
   "enable": "Enable",
   "form": {
+    "areaCode": "Area Code",
+    "areaCodePlaceholder": "Area code",
     "balance": "Balance",
     "balancePlaceholder": "Balance",
     "cancel": "Cancel",
@@ -33,12 +35,15 @@
     "passwordPlaceholder": "Enter new password (optional)",
     "refererId": "Referer ID",
     "refererIdPlaceholder": "Enter referer ID",
+    "telephone": "Phone Number",
+    "telephonePlaceholder": "Enter phone number",
     "userEmail": "User Email",
     "userEmailPlaceholder": "Enter user email"
   },
   "giftAmount": "Gift Amount",
   "inviteCode": "Invite Code",
   "referer": "Referer",
+  "telephone": "Phone Number",
   "updateSuccess": "Update successful",
   "userList": "User List",
   "userName": "User Email"

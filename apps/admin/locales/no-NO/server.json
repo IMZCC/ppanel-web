@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "Legg til tidsluke",
+    "communicationKey": "Kommunikasjonsnøkkel",
+    "communicationKeyDescription": "Nøkkel for nodekommunikasjon for å sikre datasikkerhet",
+    "delete": "Slett",
+    "dynamicMultiplier": "Dynamisk multiplikator",
+    "dynamicMultiplierDescription": "Dynamisk multiplikator refererer til behandling av dyttet data med forskjellige multiplikatorer for forskjellige noder i ulike tidsperioder.",
+    "endTime": "Sluttid",
+    "inputPlaceholder": "Skriv inn",
+    "multiplier": "Multiplikator",
+    "nodePullInterval": "Node hentingsintervall",
+    "nodePullIntervalDescription": "Frekvens (i sekunder) for noder å hente data fra panelet",
+    "nodePushInterval": "Node dyttingsintervall",
+    "nodePushIntervalDescription": "Frekvens for noder å dytte data til panelet",
+    "reset": "Tilbakestill",
+    "save": "Lagre",
+    "saveSuccess": "Lagret vellykket",
+    "startTime": "Starttid",
+    "timeSlot": "Tidsluke"
+  },
   "group": {
     "actions": "Handlinger",
     "cancel": "Avbryt",
@@ -100,6 +120,8 @@
       "serverName": "Tjenestenavn",
       "speedLimit": "Hastighetsbegrensning",
       "speedLimitPlaceholder": "Ingen begrensning",
+      "tags": "Merker",
+      "tagsPlaceholder": "Bruk Enter eller komma (,) for å legge inn flere merker",
       "trafficRatio": "Trafikkhastighet",
       "transport": "Transportprotokoll",
       "transportConfig": "Transportprotokollkonfigurasjon",
@@ -120,6 +142,7 @@
     "serverAddr": "Serveradresse",
     "speedLimit": "Hastighetsbegrensning",
     "status": "Status",
+    "tags": "Merker",
     "trafficRatio": "Trafikkhastighet",
     "type": "Type",
     "updateSuccess": "Oppdatering vellykket",
@@ -127,6 +150,7 @@
   },
   "tabs": {
     "node": "Node",
+    "nodeConfig": "Node-konfigurasjon",
     "nodeGroup": "Nodegruppe"
   }
 }
