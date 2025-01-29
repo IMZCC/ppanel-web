@@ -12,19 +12,75 @@ declare namespace API {
 
   type Application = {
     id: number;
-    name: string;
-    platform: string;
-    subscribe_type: string;
     icon: string;
-    url: string;
+    name: string;
+    description: string;
+    subscribe_type: string;
+  };
+
+  type ApplicationConfig = {
+    app_id: number;
+    encryption_key: string;
+    encryption_method: string;
+    domains: string[];
+    startup_picture: string;
+    startup_picture_skip_time: number;
+  };
+
+  type ApplicationPlatform = {
+    ios?: ApplicationVersion[];
+    mac?: ApplicationVersion[];
+    linux?: ApplicationVersion[];
+    android?: ApplicationVersion[];
+    windows?: ApplicationVersion[];
+    harmony?: ApplicationVersion[];
   };
 
   type ApplicationResponse = {
-    windows: Application[];
-    mac: Application[];
-    linux: Application[];
-    android: Application[];
-    ios: Application[];
+    applications: ApplicationResponseInfo[];
+  };
+
+  type ApplicationResponseInfo = {
+    id: number;
+    name: string;
+    icon: string;
+    description: string;
+    subscribe_type: string;
+    platform: ApplicationPlatform;
+  };
+
+  type ApplicationVersion = {
+    id: number;
+    url: string;
+    version: string;
+    description: string;
+    is_default: boolean;
+  };
+
+  type AuthConfig = {
+    sms: SmsAuthenticateConfig;
+    email: EmailAuthticateConfig;
+    register: RegisterConfig;
+  };
+
+  type AuthMethod = {
+    auth_type: string;
+    auth_identifier: string;
+    verified: boolean;
+  };
+
+  type BindOAuthCallbackRequest = {
+    method: string;
+    callback: Record<string, any>;
+  };
+
+  type BindOAuthRequest = {
+    method: string;
+    redirect: string;
+  };
+
+  type BindOAuthResponse = {
+    redirect: string;
   };
 
   type BindTelegramResponse = {
@@ -44,6 +100,14 @@ declare namespace API {
 
   type CloseOrderRequest = {
     orderNo: string;
+  };
+
+  type CommissionLog = {
+    id: number;
+    user_id: number;
+    order_no: string;
+    amount: number;
+    created_at: number;
   };
 
   type Coupon = {
@@ -90,7 +154,15 @@ declare namespace API {
     updated_at: number;
   };
 
+  type EmailAuthticateConfig = {
+    email_enabled: boolean;
+    email_enable_verify: boolean;
+    email_enable_domain_suffix: boolean;
+    email_domain_suffix_list: string;
+  };
+
   type EmailSmtpConfig = {
+    email_enabled: boolean;
     email_smtp_host: string;
     email_smtp_port: number;
     email_smtp_user: string;
@@ -100,6 +172,9 @@ declare namespace API {
     verify_email_template: string;
     maintenance_email_template: string;
     expiration_email_template: string;
+    email_enable_verify: boolean;
+    email_enable_domain_suffix: boolean;
+    email_domain_suffix_list: string;
   };
 
   type Follow = {
@@ -113,6 +188,10 @@ declare namespace API {
 
   type GetAvailablePaymentMethodsResponse = {
     list: PaymentConfig[];
+  };
+
+  type GetOAuthMethodsResponse = {
+    methods: AuthMethod[];
   };
 
   type GetUserTicketDetailRequest = {
@@ -172,6 +251,16 @@ declare namespace API {
     online_users: OnlineUser[];
     status: ServerStatus;
     last_at: number;
+  };
+
+  type OAuthMethod = {
+    id: number;
+    platform: string;
+    config: Record<string, any>;
+    redirect: string;
+    enabled: boolean;
+    created_at: number;
+    updated_at: number;
   };
 
   type OnlineUser = {
@@ -360,6 +449,21 @@ declare namespace API {
     total: number;
   };
 
+  type QueryUserCommissionLogListRequest = {
+    page: number;
+    size: number;
+  };
+
+  type QueryUserCommissionLogListResponse = {
+    list: CommissionLog[];
+    total: number;
+  };
+
+  type QueryUserCommissionLogParams = {
+    page: number;
+    size: number;
+  };
+
   type QueryUserSubscribeListResponse = {
     list: UserSubscribe[];
     total: number;
@@ -377,9 +481,6 @@ declare namespace API {
   type RegisterConfig = {
     stop_register: boolean;
     enable_trial: boolean;
-    enable_email_verify: boolean;
-    enable_email_domain_suffix: boolean;
-    email_domain_suffix_list: string;
     enable_ip_register_limit: boolean;
     ip_register_limit: number;
     ip_register_limit_duration: number;
@@ -405,6 +506,10 @@ declare namespace API {
     order_no: string;
   };
 
+  type ResetUserSubscribeTokenRequest = {
+    user_subscribe_id: number;
+  };
+
   type Response = {
     /** 状态码 */
     code?: number;
@@ -427,6 +532,9 @@ declare namespace API {
 
   type Server = {
     id: number;
+    tags: string[];
+    country: string;
+    city: string;
     name: string;
     server_addr: string;
     relay_mode: string;
@@ -469,6 +577,26 @@ declare namespace API {
     site_name: string;
     site_desc: string;
     site_logo: string;
+  };
+
+  type SmsAuthenticateConfig = {
+    sms_enabled: boolean;
+    sms_limit: number;
+    sms_interval: number;
+    sms_expire_time: number;
+  };
+
+  type SmsConfig = {
+    sms_enabled: boolean;
+    sms_key: string;
+    sms_secret: string;
+    sms_template: string;
+    sms_template_code: string;
+    sms_template_param: string;
+    sms_platform: string;
+    sms_limit: number;
+    sms_interval: number;
+    sms_expire_time: number;
   };
 
   type SortItem = {
@@ -580,6 +708,10 @@ declare namespace API {
     security_config: SecurityConfig;
   };
 
+  type UnbindOAuthRequest = {
+    method: string;
+  };
+
   type UnsubscribeRequest = {
     id: number;
   };
@@ -608,7 +740,6 @@ declare namespace API {
 
   type User = {
     id: number;
-    email: string;
     avatar: string;
     balance: number;
     commission: number;
@@ -625,6 +756,7 @@ declare namespace API {
     enable_login_notify: boolean;
     enable_subscribe_notify: boolean;
     enable_trade_notify: boolean;
+    auth_methods: AuthMethod[];
     created_at: number;
     updated_at: number;
     deleted_at?: number;
@@ -646,6 +778,17 @@ declare namespace API {
     order_id: number;
     balance: number;
     created_at: number;
+  };
+
+  type UserDevice = {
+    id: number;
+    user_id: number;
+    device_number: string;
+    online: boolean;
+    last_online: number;
+    enabled: boolean;
+    created_at: number;
+    updated_at: number;
   };
 
   type UserSubscribe = {

@@ -7,9 +7,8 @@ import Unsubscribe from '@/components/subscribe/unsubscribe';
 import useGlobalStore from '@/config/use-global';
 import { getStat } from '@/services/common/common';
 import { queryApplicationConfig } from '@/services/user/subscribe';
-import { queryUserSubscribe } from '@/services/user/user';
+import { queryUserSubscribe, resetUserSubscribeToken } from '@/services/user/user';
 import { getPlatform } from '@/utils/common';
-import { Icon } from '@iconify/react';
 import { useQuery } from '@tanstack/react-query';
 import {
   Accordion,
@@ -32,6 +31,7 @@ import { Button } from '@workspace/ui/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/card';
 import { Separator } from '@workspace/ui/components/separator';
 import { Tabs, TabsList, TabsTrigger } from '@workspace/ui/components/tabs';
+import { Icon } from '@workspace/ui/custom-components/icon';
 import { isBrowser } from '@workspace/ui/utils';
 import { differenceInDays } from 'date-fns';
 import { useTranslations } from 'next-intl';
@@ -43,27 +43,36 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import { toast } from 'sonner';
 import Subscribe from '../subscribe/page';
 
+const platforms: (keyof API.ApplicationPlatform)[] = [
+  'windows',
+  'mac',
+  'linux',
+  'ios',
+  'android',
+  'harmony',
+];
+
 export default function Content() {
   const t = useTranslations('dashboard');
   const { getUserSubscribe, getAppSubLink } = useGlobalStore();
 
   const [protocol, setProtocol] = useState('');
 
-  const { data: userSubscribe = [] } = useQuery({
+  const { data: userSubscribe = [], refetch } = useQuery({
     queryKey: ['queryUserSubscribe'],
     queryFn: async () => {
       const { data } = await queryUserSubscribe();
       return data.data?.list || [];
     },
   });
-  const { data: application } = useQuery({
+  const { data: applications } = useQuery({
     queryKey: ['queryApplicationConfig'],
     queryFn: async () => {
       const { data } = await queryApplicationConfig();
-      return data.data as API.ApplicationResponse;
+      return data.data?.applications || [];
     },
   });
-  const [platform, setPlatform] = useState<keyof API.ApplicationResponse>(getPlatform());
+  const [platform, setPlatform] = useState<keyof API.ApplicationPlatform>(getPlatform());
 
   const { data } = useQuery({
     queryKey: ['getStat'],
@@ -87,16 +96,27 @@ export default function Content() {
           <div className='flex flex-wrap justify-between gap-4'>
             <Tabs
               value={platform}
-              onValueChange={(value) => setPlatform(value as keyof API.ApplicationResponse)}
+              onValueChange={(value) => setPlatform(value as keyof API.ApplicationPlatform)}
               className='w-full max-w-full md:w-auto'
             >
               <TabsList className='flex *:flex-auto'>
-                {application &&
-                  Object.keys(application)?.map((item) => (
-                    <TabsTrigger value={item} key={item} className='px-1 uppercase lg:px-3'>
-                      {item}
-                    </TabsTrigger>
-                  ))}
+                {platforms.map((item) => (
+                  <TabsTrigger value={item} key={item} className='px-1 lg:px-3'>
+                    <Icon
+                      icon={`${
+                        {
+                          windows: 'mdi:microsoft-windows',
+                          mac: 'uil:apple',
+                          linux: 'uil:linux',
+                          ios: 'simple-icons:ios',
+                          android: 'uil:android',
+                          harmony: 'simple-icons:harmonyos',
+                        }[item]
+                      }`}
+                      className='size-5'
+                    />
+                  </TabsTrigger>
+                ))}
               </TabsList>
             </Tabs>
             {data?.protocol && data?.protocol.length > 1 && (
@@ -123,7 +143,7 @@ export default function Content() {
             <Card key={item.id}>
               <CardHeader className='flex flex-row flex-wrap items-center justify-between gap-2 space-y-0'>
                 <CardTitle className='font-medium'>{item.subscribe.name}</CardTitle>
-                <div className='flex gap-2'>
+                <div className='flex flex-wrap gap-2'>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <Button size='sm' variant='destructive'>
@@ -139,7 +159,15 @@ export default function Content() {
                       </AlertDialogHeader>
                       <AlertDialogFooter>
                         <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
-                        <AlertDialogAction onClick={() => toast.success(t('resetSuccess'))}>
+                        <AlertDialogAction
+                          onClick={async () => {
+                            await resetUserSubscribeToken({
+                              user_subscribe_id: item.id,
+                            });
+                            await refetch();
+                            toast.success(t('resetSuccess'));
+                          }}
+                        >
                           {t('confirm')}
                         </AlertDialogAction>
                       </AlertDialogFooter>
@@ -214,49 +242,80 @@ export default function Content() {
                         </div>
                       </AccordionTrigger>
                       <AccordionContent>
-                        <div className='grid grid-cols-3 gap-4 lg:grid-cols-4 xl:grid-cols-7'>
-                          {application?.[platform]?.map((app) => (
-                            <div
-                              key={app.name}
-                              className='text-muted-foreground flex size-full flex-col items-center justify-between gap-2 text-xs'
-                            >
-                              <span>{app.name}</span>
-                              {app.icon && (
-                                <Image src={app.icon} alt={app.name} width={50} height={50} />
-                              )}
-                              <div className='flex'>
-                                <Button
-                                  size='sm'
-                                  variant='secondary'
-                                  className='rounded-r-none px-1.5'
-                                  asChild
-                                >
-                                  <Link href={app.url}>{t('download')}</Link>
-                                </Button>
+                        <div className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6'>
+                          {applications
+                            ?.filter((application) => {
+                              const platformApps = application.platform?.[platform];
+                              return platformApps && platformApps.length > 0;
+                            })
+                            .map((application) => {
+                              const platformApps = application.platform?.[platform];
+                              const app =
+                                platformApps?.find((item) => item.is_default) || platformApps?.[0];
+                              if (!app) return null;
 
-                                <CopyToClipboard
-                                  text={url}
-                                  onCopy={(text, result) => {
-                                    const href = getAppSubLink(app.subscribe_type, url);
-                                    if (isBrowser() && href) {
-                                      window.location.href = href;
-                                    } else if (result) {
-                                      toast.success(
-                                        <>
-                                          <p>{t('copySuccess')}</p>
-                                          <p>{t('manualImportMessage')}</p>
-                                        </>,
-                                      );
-                                    }
-                                  }}
+                              const handleCopy = (text: string, result: boolean) => {
+                                if (result) {
+                                  const href = getAppSubLink(application.subscribe_type, url);
+                                  const showSuccessMessage = () => {
+                                    toast.success(
+                                      <>
+                                        <p>{t('copySuccess')}</p>
+                                        <p>{t('manualImportMessage')}</p>
+                                      </>,
+                                    );
+                                  };
+
+                                  if (isBrowser() && href) {
+                                    window.location.href = href;
+                                    const checkRedirect = setTimeout(() => {
+                                      if (window.location.href !== href) {
+                                        showSuccessMessage();
+                                      }
+                                      clearTimeout(checkRedirect);
+                                    }, 1000);
+                                    return;
+                                  }
+
+                                  showSuccessMessage();
+                                }
+                              };
+
+                              return (
+                                <div
+                                  key={application.name}
+                                  className='text-muted-foreground flex size-full flex-col items-center justify-between gap-2 text-xs'
                                 >
-                                  <Button size='sm' className='rounded-l-none p-2'>
-                                    {t('import')}
-                                  </Button>
-                                </CopyToClipboard>
-                              </div>
-                            </div>
-                          ))}
+                                  <span>{application.name}</span>
+
+                                  {application.icon && (
+                                    <Image
+                                      src={application.icon}
+                                      alt={application.name}
+                                      width={64}
+                                      height={64}
+                                      className='p-1'
+                                    />
+                                  )}
+                                  <div className='flex'>
+                                    <Button
+                                      size='sm'
+                                      variant='secondary'
+                                      className='rounded-r-none px-1.5'
+                                      asChild
+                                    >
+                                      <Link href={app.url}>{t('download')}</Link>
+                                    </Button>
+
+                                    <CopyToClipboard text={url} onCopy={handleCopy}>
+                                      <Button size='sm' className='rounded-l-none p-2'>
+                                        {t('import')}
+                                      </Button>
+                                    </CopyToClipboard>
+                                  </div>
+                                </div>
+                              );
+                            })}
                           <div className='text-muted-foreground hidden size-full flex-col items-center justify-between gap-2 text-sm lg:flex'>
                             <span>{t('qrCode')}</span>
                             <QRCodeCanvas

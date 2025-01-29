@@ -42,12 +42,57 @@ export async function queryUserBalanceLog(options?: { [key: string]: any }) {
   );
 }
 
+/** Bind OAuth POST /v1/public/user/bind_oauth */
+export async function bindOAuth(body: API.BindOAuthRequest, options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.BindOAuthResponse }>('/v1/public/user/bind_oauth', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Bind OAuth Callback POST /v1/public/user/bind_oauth/callback */
+export async function bindOAuthCallback(
+  body: API.BindOAuthCallbackRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/public/user/bind_oauth/callback', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** Bind Telegram GET /v1/public/user/bind_telegram */
 export async function bindTelegram(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.BindTelegramResponse }>(
     '/v1/public/user/bind_telegram',
     {
       method: 'GET',
+      ...(options || {}),
+    },
+  );
+}
+
+/** Query User Commission Log GET /v1/public/user/commission_log */
+export async function queryUserCommissionLog(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.QueryUserCommissionLogParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: API.QueryUserCommissionLogListResponse }>(
+    '/v1/public/user/commission_log',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
       ...(options || {}),
     },
   );
@@ -91,6 +136,17 @@ export async function updateUserNotifySetting(
   });
 }
 
+/** Get OAuth Methods GET /v1/public/user/oauth_methods */
+export async function getOAuthMethods(options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.GetOAuthMethodsResponse }>(
+    '/v1/public/user/oauth_methods',
+    {
+      method: 'GET',
+      ...(options || {}),
+    },
+  );
+}
+
 /** Update User Password PUT /v1/public/user/password */
 export async function updateUserPassword(
   body: API.UpdateUserPasswordRequest,
@@ -115,6 +171,33 @@ export async function queryUserSubscribe(options?: { [key: string]: any }) {
       ...(options || {}),
     },
   );
+}
+
+/** Reset User Subscribe Token PUT /v1/public/user/subscribe_token */
+export async function resetUserSubscribeToken(
+  body: API.ResetUserSubscribeTokenRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/public/user/subscribe_token', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Unbind OAuth POST /v1/public/user/unbind_oauth */
+export async function unbindOAuth(body: API.UnbindOAuthRequest, options?: { [key: string]: any }) {
+  return request<API.Response & { data?: any }>('/v1/public/user/unbind_oauth', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
 }
 
 /** Unbind Telegram POST /v1/public/user/unbind_telegram */

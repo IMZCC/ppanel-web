@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "Dodaj przedział czasowy",
+    "communicationKey": "Klucz komunikacyjny",
+    "communicationKeyDescription": "Klucz do komunikacji węzłów w celu zapewnienia bezpieczeństwa danych",
+    "delete": "Usuń",
+    "dynamicMultiplier": "Mnożnik dynamiczny",
+    "dynamicMultiplierDescription": "Mnożnik dynamiczny odnosi się do przetwarzania przesyłanych danych z różnymi mnożnikami dla różnych węzłów w różnych okresach czasu.",
+    "endTime": "Czas zakończenia",
+    "inputPlaceholder": "Wprowadź",
+    "multiplier": "Mnożnik",
+    "nodePullInterval": "Interwał pobierania węzła",
+    "nodePullIntervalDescription": "Częstotliwość (w sekundach) pobierania danych przez węzły z panelu",
+    "nodePushInterval": "Interwał przesyłania węzła",
+    "nodePushIntervalDescription": "Częstotliwość przesyłania danych przez węzły do panelu",
+    "reset": "Resetuj",
+    "save": "Zapisz",
+    "saveSuccess": "Zapisano pomyślnie",
+    "startTime": "Czas rozpoczęcia",
+    "timeSlot": "Przedział czasowy"
+  },
   "group": {
     "actions": "Operacje",
     "cancel": "Anuluj",
@@ -46,7 +66,9 @@
     "form": {
       "allowInsecure": "Zezwól na niebezpieczne",
       "cancel": "Anuluj",
+      "city": "Miasto",
       "confirm": "Potwierdź",
+      "country": "Kraj",
       "edit": "Edytuj",
       "editSecurity": "Edytuj konfigurację bezpieczeństwa",
       "enableTLS": "Włącz TLS",
@@ -100,6 +122,8 @@
       "serverName": "Nazwa usługi",
       "speedLimit": "Ograniczenie prędkości",
       "speedLimitPlaceholder": "Bez ograniczeń",
+      "tags": "Tagi",
+      "tagsPlaceholder": "Użyj Enter lub przecinka (,) aby wprowadzić wiele tagów",
       "trafficRatio": "Wskaźnik ruchu",
       "transport": "Protokół transportowy",
       "transportConfig": "Konfiguracja protokołu transportowego",
@@ -120,6 +144,7 @@
     "serverAddr": "Adres serwera",
     "speedLimit": "Ograniczenie prędkości",
     "status": "Status",
+    "tags": "Tagi",
     "trafficRatio": "Wskaźnik ruchu",
     "type": "Typ",
     "updateSuccess": "Aktualizacja zakończona pomyślnie",
@@ -127,6 +152,7 @@
   },
   "tabs": {
     "node": "Węzeł",
+    "nodeConfig": "Konfiguracja Węzła",
     "nodeGroup": "Grupa węzłów"
   }
 }

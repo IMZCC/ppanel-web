@@ -36,7 +36,7 @@ export default function SubscribeTable() {
   });
   const ref = useRef<ProTableActions>(null);
   return (
-    <ProTable<API.Subscribe, { group_id: number; query: string }>
+    <ProTable<API.SubscribeItem, { group_id: number; query: string }>
       action={ref}
       header={{
         toolbar: (
@@ -183,10 +183,15 @@ export default function SubscribeTable() {
             return name ? <Badge variant='outline'>{name}</Badge> : '--';
           },
         },
+        {
+          accessorKey: 'sold',
+          header: t('sold'),
+          cell: ({ row }) => <Badge variant='outline'>{row.getValue('sold')}</Badge>,
+        },
       ]}
       actions={{
         render: (row) => [
-          <SubscribeForm<API.Subscribe>
+          <SubscribeForm<API.SubscribeItem>
             key='edit'
             trigger={t('edit')}
             title={t('editSubscribe')}
@@ -210,6 +215,21 @@ export default function SubscribeTable() {
               }
             }}
           />,
+          <ConfirmButton
+            key='delete'
+            trigger={<Button variant='destructive'>{t('delete')}</Button>}
+            title={t('confirmDelete')}
+            description={t('deleteWarning')}
+            onConfirm={async () => {
+              await deleteSubscribe({
+                id: row.id!,
+              });
+              toast.success(t('deleteSuccess'));
+              ref.current?.refresh();
+            }}
+            cancelText={t('cancel')}
+            confirmText={t('confirm')}
+          />,
           <Button
             key='copy'
             variant='secondary'
@@ -221,7 +241,7 @@ export default function SubscribeTable() {
                   ...params,
                   show: false,
                   sell: false,
-                });
+                } as API.CreateSubscribeRequest);
                 toast.success(t('copySuccess'));
                 ref.current?.refresh();
                 setLoading(false);
@@ -234,21 +254,6 @@ export default function SubscribeTable() {
           >
             {t('copy')}
           </Button>,
-          <ConfirmButton
-            key='delete'
-            trigger={<Button variant='destructive'>{t('delete')}</Button>}
-            title={t('confirmDelete')}
-            description={t('deleteWarning')}
-            onConfirm={async () => {
-              await deleteSubscribe({
-                id: row.id,
-              });
-              toast.success(t('deleteSuccess'));
-              ref.current?.refresh();
-            }}
-            cancelText={t('cancel')}
-            confirmText={t('confirm')}
-          />,
         ],
         batchRender: (rows) => [
           <ConfirmButton
@@ -258,7 +263,7 @@ export default function SubscribeTable() {
             description={t('deleteWarning')}
             onConfirm={async () => {
               await batchDeleteSubscribe({
-                ids: rows.map((item) => item.id),
+                ids: rows.map((item) => item.id) as number[],
               });
 
               toast.success(t('deleteSuccess'));
@@ -273,24 +278,24 @@ export default function SubscribeTable() {
         const sourceIndex = items.findIndex((item) => String(item.id) === source);
         const targetIndex = items.findIndex((item) => String(item.id) === target);
 
-        const originalSortMap = new Map(items.map((item) => [item.id, item.sort || item.id]));
+        const originalSorts = items.map((item) => item.sort);
 
         const [movedItem] = items.splice(sourceIndex, 1);
         items.splice(targetIndex, 0, movedItem!);
 
         const updatedItems = items.map((item, index) => {
-          const originalSort = originalSortMap.get(item.id);
+          const originalSort = originalSorts[index];
           const newSort = originalSort !== undefined ? originalSort : item.sort;
           return { ...item, sort: newSort };
         });
 
-        const changedItems = updatedItems.filter(
-          (item) => originalSortMap.get(item.id) !== item.sort,
-        );
+        const changedItems = updatedItems.filter((item, index) => {
+          return item.sort !== items[index]?.sort;
+        });
 
         if (changedItems.length > 0) {
           subscribeSort({
-            sort: changedItems.map((item) => ({ id: item.id, sort: item.sort })),
+            sort: changedItems.map((item) => ({ id: item.id, sort: item.sort })) as API.SortItem[],
           });
         }
 

@@ -1,0 +1,13 @@
+{
+  "ipRegistrationLimit": "IP-Registrierungsgrenze",
+  "ipRegistrationLimitDescription": "Wenn aktiviert, werden IPs, die die Regelanforderungen erfüllen, von der Registrierung ausgeschlossen; beachten Sie, dass die Bestimmung der IPs aufgrund von CDNs oder Frontend-Proxys Probleme verursachen kann",
+  "penaltyTime": "Strafzeit (Minuten)",
+  "penaltyTimeDescription": "Benutzer müssen warten, bis die Strafzeit abgelaufen ist, bevor sie sich erneut registrieren können",
+  "registrationLimitCount": "Anzahl der Anmeldungen",
+  "registrationLimitCountDescription": "Strafe aktivieren, nachdem das Registrierungslimit erreicht wurde",
+  "saveSuccess": "Erfolgreich gespeichert",
+  "stopNewUserRegistration": "Neue Benutzerregistrierung stoppen",
+  "stopNewUserRegistrationDescription": "Wenn aktiviert, kann sich niemand registrieren",
+  "trialRegistration": "Studienregistrierung",
+  "trialRegistrationDescription": "Testregistrierung aktivieren; zuerst Testpaket und -dauer anpassen"
+}

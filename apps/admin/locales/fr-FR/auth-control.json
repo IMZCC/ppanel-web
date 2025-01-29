@@ -1,0 +1,13 @@
+{
+  "ipRegistrationLimit": "Limite d'enregistrement IP",
+  "ipRegistrationLimitDescription": "Lorsqu'elle est activée, les IPs qui répondent aux exigences de la règle seront restreintes de l'enregistrement ; notez que la détermination des IPs peut causer des problèmes en raison des CDN ou des proxies frontaux",
+  "penaltyTime": "Temps de pénalité (minutes)",
+  "penaltyTimeDescription": "Les utilisateurs doivent attendre l'expiration du temps de pénalité avant de pouvoir s'inscrire à nouveau",
+  "registrationLimitCount": "Nombre limite d'inscriptions",
+  "registrationLimitCountDescription": "Activer la pénalité après avoir atteint la limite d'inscription",
+  "saveSuccess": "Enregistrement réussi",
+  "stopNewUserRegistration": "Arrêter l'enregistrement des nouveaux utilisateurs",
+  "stopNewUserRegistrationDescription": "Lorsqu'elle est activée, personne ne peut s'inscrire",
+  "trialRegistration": "Inscription à l'essai",
+  "trialRegistrationDescription": "Activer l'inscription à l'essai ; modifiez d'abord le forfait et la durée de l'essai"
+}

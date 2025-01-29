@@ -1,0 +1,13 @@
+{
+  "ipRegistrationLimit": "आईपी पंजीकरण सीमा",
+  "ipRegistrationLimitDescription": "जब सक्षम किया जाता है, तो नियम आवश्यकताओं को पूरा करने वाले IPs को पंजीकरण से प्रतिबंधित कर दिया जाएगा; ध्यान दें कि IP निर्धारण CDNs या फ्रंटेंड प्रॉक्सी के कारण समस्याएं उत्पन्न कर सकता है",
+  "penaltyTime": "दंड समय (मिनटों में)",
+  "penaltyTimeDescription": "उपयोगकर्ताओं को फिर से पंजीकरण करने से पहले दंड समय समाप्त होने की प्रतीक्षा करनी होगी",
+  "registrationLimitCount": "पंजीकरण सीमा संख्या",
+  "registrationLimitCountDescription": "पंजीकरण सीमा तक पहुँचने के बाद दंड सक्षम करें",
+  "saveSuccess": "सहेजना सफल हुआ",
+  "stopNewUserRegistration": "नए उपयोगकर्ता पंजीकरण को रोकें",
+  "stopNewUserRegistrationDescription": "सक्रिय होने पर, कोई भी पंजीकरण नहीं कर सकता",
+  "trialRegistration": "परीक्षण पंजीकरण",
+  "trialRegistrationDescription": "परीक्षण पंजीकरण सक्षम करें; पहले परीक्षण पैकेज और अवधि संशोधित करें"
+}

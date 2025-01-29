@@ -1,0 +1,13 @@
+{
+  "ipRegistrationLimit": "IP Kayıt Sınırı",
+  "ipRegistrationLimitDescription": "Etkinleştirildiğinde, kural gereksinimlerini karşılayan IP'lerin kaydolması kısıtlanacaktır; IP belirlemesinin CDN'ler veya ön uç proxy'ler nedeniyle sorunlara yol açabileceğini unutmayın",
+  "penaltyTime": "Ceza Süresi (dakika)",
+  "penaltyTimeDescription": "Kullanıcılar, tekrar kayıt olmadan önce ceza süresinin dolmasını beklemelidir",
+  "registrationLimitCount": "Kayıt Sınır Sayısı",
+  "registrationLimitCountDescription": "Kayıt sınırına ulaşıldığında ceza uygulamasını etkinleştir",
+  "saveSuccess": "Kaydetme Başarılı",
+  "stopNewUserRegistration": "Yeni Kullanıcı Kaydını Durdur",
+  "stopNewUserRegistrationDescription": "Etkinleştirildiğinde, kimse kayıt olamaz",
+  "trialRegistration": "Deneme Kaydı",
+  "trialRegistrationDescription": "Deneme kaydını etkinleştir; önce deneme paketini ve süresini değiştir"
+}

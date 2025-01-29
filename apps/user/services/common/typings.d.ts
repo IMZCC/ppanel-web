@@ -10,21 +10,69 @@ declare namespace API {
     updated_at: number;
   };
 
+  type AppleLoginCallbackRequest = {
+    code: string;
+    id_token: string;
+    state: string;
+  };
+
   type Application = {
     id: number;
-    name: string;
-    platform: string;
-    subscribe_type: string;
     icon: string;
-    url: string;
+    name: string;
+    description: string;
+    subscribe_type: string;
+  };
+
+  type ApplicationConfig = {
+    app_id: number;
+    encryption_key: string;
+    encryption_method: string;
+    domains: string[];
+    startup_picture: string;
+    startup_picture_skip_time: number;
+  };
+
+  type ApplicationPlatform = {
+    ios?: ApplicationVersion[];
+    mac?: ApplicationVersion[];
+    linux?: ApplicationVersion[];
+    android?: ApplicationVersion[];
+    windows?: ApplicationVersion[];
+    harmony?: ApplicationVersion[];
   };
 
   type ApplicationResponse = {
-    windows: Application[];
-    mac: Application[];
-    linux: Application[];
-    android: Application[];
-    ios: Application[];
+    applications: ApplicationResponseInfo[];
+  };
+
+  type ApplicationResponseInfo = {
+    id: number;
+    name: string;
+    icon: string;
+    description: string;
+    subscribe_type: string;
+    platform: ApplicationPlatform;
+  };
+
+  type ApplicationVersion = {
+    id: number;
+    url: string;
+    version: string;
+    description: string;
+    is_default: boolean;
+  };
+
+  type AuthConfig = {
+    sms: SmsAuthenticateConfig;
+    email: EmailAuthticateConfig;
+    register: RegisterConfig;
+  };
+
+  type AuthMethod = {
+    auth_type: string;
+    auth_identifier: string;
+    verified: boolean;
   };
 
   type CheckUserParams = {
@@ -37,6 +85,10 @@ declare namespace API {
 
   type CheckUserResponse = {
     exist: boolean;
+  };
+
+  type CheckUserTelephoneParams = {
+    telephone: string;
   };
 
   type Coupon = {
@@ -71,7 +123,15 @@ declare namespace API {
     updated_at: number;
   };
 
+  type EmailAuthticateConfig = {
+    email_enabled: boolean;
+    email_enable_verify: boolean;
+    email_enable_domain_suffix: boolean;
+    email_domain_suffix_list: string;
+  };
+
   type EmailSmtpConfig = {
+    email_enabled: boolean;
     email_smtp_host: string;
     email_smtp_port: number;
     email_smtp_user: string;
@@ -81,6 +141,9 @@ declare namespace API {
     verify_email_template: string;
     maintenance_email_template: string;
     expiration_email_template: string;
+    email_enable_verify: boolean;
+    email_enable_domain_suffix: boolean;
+    email_domain_suffix_list: string;
   };
 
   type Follow = {
@@ -92,13 +155,19 @@ declare namespace API {
     created_at: number;
   };
 
+  type GetAppcationResponse = {
+    config: ApplicationConfig;
+    applications: ApplicationResponseInfo[];
+  };
+
   type GetGlobalConfigResponse = {
     site: SiteConfig;
     verify: VeifyConfig;
-    register: RegisterConfig;
+    auth: AuthConfig;
     invite: InviteConfig;
     currency: CurrencyConfig;
     subscribe: SubscribeConfig;
+    oauth_methods: string[];
   };
 
   type GetStatResponse = {
@@ -114,6 +183,16 @@ declare namespace API {
 
   type GetTosResponse = {
     tos_content: string;
+  };
+
+  type GoogleLoginCallbackParams = {
+    code: string;
+    state: string;
+  };
+
+  type GoogleLoginCallbackRequest = {
+    code: string;
+    state: string;
   };
 
   type Hysteria2 = {
@@ -150,6 +229,32 @@ declare namespace API {
     online_users: OnlineUser[];
     status: ServerStatus;
     last_at: number;
+  };
+
+  type OAthLoginRequest = {
+    /** google, facebook, apple, telegram, github etc. */
+    method: string;
+    redirect: string;
+  };
+
+  type OAuthLoginGetTokenRequest = {
+    /** google, facebook, apple, telegram, github etc. */
+    method: string;
+    callback: Record<string, any>;
+  };
+
+  type OAuthLoginResponse = {
+    redirect: string;
+  };
+
+  type OAuthMethod = {
+    id: number;
+    platform: string;
+    config: Record<string, any>;
+    redirect: string;
+    enabled: boolean;
+    created_at: number;
+    updated_at: number;
   };
 
   type OnlineUser = {
@@ -218,9 +323,6 @@ declare namespace API {
   type RegisterConfig = {
     stop_register: boolean;
     enable_trial: boolean;
-    enable_email_verify: boolean;
-    enable_email_domain_suffix: boolean;
-    email_domain_suffix_list: string;
     enable_ip_register_limit: boolean;
     ip_register_limit: number;
     ip_register_limit_duration: number;
@@ -259,11 +361,20 @@ declare namespace API {
   };
 
   type SendCodeResponse = {
+    code?: string;
     status: boolean;
+  };
+
+  type SendSmsCodeRequest = {
+    telephone: string;
+    telephone_area_code: string;
   };
 
   type Server = {
     id: number;
+    tags: string[];
+    country: string;
+    city: string;
     name: string;
     server_addr: string;
     relay_mode: string;
@@ -306,6 +417,26 @@ declare namespace API {
     site_name: string;
     site_desc: string;
     site_logo: string;
+  };
+
+  type SmsAuthenticateConfig = {
+    sms_enabled: boolean;
+    sms_limit: number;
+    sms_interval: number;
+    sms_expire_time: number;
+  };
+
+  type SmsConfig = {
+    sms_enabled: boolean;
+    sms_key: string;
+    sms_secret: string;
+    sms_template: string;
+    sms_template_code: string;
+    sms_template_param: string;
+    sms_platform: string;
+    sms_limit: number;
+    sms_interval: number;
+    sms_expire_time: number;
   };
 
   type SortItem = {
@@ -371,6 +502,39 @@ declare namespace API {
     telegram_web_hook_domain: string;
   };
 
+  type TelephoneCheckUserRequest = {
+    telephone_area_code: string;
+  };
+
+  type TelephoneCheckUserResponse = {
+    exist: boolean;
+  };
+
+  type TelephoneLoginRequest = {
+    telephone: string;
+    telephone_code: string;
+    telephone_area_code: string;
+    password: string;
+    cf_token?: string;
+  };
+
+  type TelephoneRegisterRequest = {
+    telephone: string;
+    telephone_area_code: string;
+    password: string;
+    invite?: string;
+    code?: string;
+    cf_token?: string;
+  };
+
+  type TelephoneResetPasswordRequest = {
+    telephone: string;
+    telephone_area_code: string;
+    password: string;
+    code?: string;
+    cf_token?: string;
+  };
+
   type Ticket = {
     id: number;
     title: string;
@@ -413,7 +577,6 @@ declare namespace API {
 
   type User = {
     id: number;
-    email: string;
     avatar: string;
     balance: number;
     commission: number;
@@ -430,6 +593,7 @@ declare namespace API {
     enable_login_notify: boolean;
     enable_subscribe_notify: boolean;
     enable_trade_notify: boolean;
+    auth_methods: AuthMethod[];
     created_at: number;
     updated_at: number;
     deleted_at?: number;
@@ -451,6 +615,17 @@ declare namespace API {
     order_id: number;
     balance: number;
     created_at: number;
+  };
+
+  type UserDevice = {
+    id: number;
+    user_id: number;
+    device_number: string;
+    online: boolean;
+    last_online: number;
+    enabled: boolean;
+    created_at: number;
+    updated_at: number;
   };
 
   type UserLoginRequest = {

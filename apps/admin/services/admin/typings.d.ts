@@ -20,19 +20,61 @@ declare namespace API {
 
   type Application = {
     id: number;
-    name: string;
-    platform: string;
-    subscribe_type: string;
     icon: string;
-    url: string;
+    name: string;
+    description: string;
+    subscribe_type: string;
+  };
+
+  type ApplicationConfig = {
+    app_id: number;
+    encryption_key: string;
+    encryption_method: string;
+    domains: string[];
+    startup_picture: string;
+    startup_picture_skip_time: number;
+  };
+
+  type ApplicationPlatform = {
+    ios?: ApplicationVersion[];
+    mac?: ApplicationVersion[];
+    linux?: ApplicationVersion[];
+    android?: ApplicationVersion[];
+    windows?: ApplicationVersion[];
+    harmony?: ApplicationVersion[];
   };
 
   type ApplicationResponse = {
-    windows: Application[];
-    mac: Application[];
-    linux: Application[];
-    android: Application[];
-    ios: Application[];
+    applications: ApplicationResponseInfo[];
+  };
+
+  type ApplicationResponseInfo = {
+    id: number;
+    name: string;
+    icon: string;
+    description: string;
+    subscribe_type: string;
+    platform: ApplicationPlatform;
+  };
+
+  type ApplicationVersion = {
+    id: number;
+    url: string;
+    version: string;
+    description: string;
+    is_default: boolean;
+  };
+
+  type AuthConfig = {
+    sms: SmsAuthenticateConfig;
+    email: EmailAuthticateConfig;
+    register: RegisterConfig;
+  };
+
+  type AuthMethod = {
+    auth_type: string;
+    auth_identifier: string;
+    verified: boolean;
   };
 
   type BatchDeleteCouponRequest = {
@@ -86,11 +128,20 @@ declare namespace API {
   };
 
   type CreateApplicationRequest = {
-    name: string;
-    platform: 'windows' | 'mac' | 'linux' | 'android' | 'ios';
-    subscribe_type: string;
     icon: string;
+    name: string;
+    description: string;
+    subscribe_type: string;
+    platform: ApplicationPlatform;
+  };
+
+  type CreateApplicationVersionRequest = {
     url: string;
+    version: string;
+    description: string;
+    platform: 'windows' | 'mac' | 'linux' | 'android' | 'ios' | 'harmony';
+    is_default: boolean;
+    application_id: number;
   };
 
   type CreateCouponRequest = {
@@ -121,6 +172,9 @@ declare namespace API {
 
   type CreateNodeRequest = {
     name: string;
+    tags: string[];
+    country: string;
+    city: string;
     server_addr: string;
     relay_mode: string;
     relay_node: NodeRelay[];
@@ -185,8 +239,16 @@ declare namespace API {
     content: string;
   };
 
+  type CreateUserAuthMethodRequest = {
+    user_id: number;
+    auth_type: string;
+    auth_identifier: string;
+  };
+
   type CreateUserRequest = {
     email: string;
+    telephone: string;
+    telephone_area_code: string;
     password: string;
     product_id: number;
     duration: number;
@@ -208,6 +270,10 @@ declare namespace API {
   };
 
   type DeleteApplicationRequest = {
+    id: number;
+  };
+
+  type DeleteApplicationVersionRequest = {
     id: number;
   };
 
@@ -235,6 +301,10 @@ declare namespace API {
     id: number;
   };
 
+  type DeleteUserDeivceRequest = {
+    id: number;
+  };
+
   type DeleteUserParams = {
     id: number;
   };
@@ -249,7 +319,15 @@ declare namespace API {
     updated_at: number;
   };
 
+  type EmailAuthticateConfig = {
+    email_enabled: boolean;
+    email_enable_verify: boolean;
+    email_enable_domain_suffix: boolean;
+    email_domain_suffix_list: string;
+  };
+
   type EmailSmtpConfig = {
+    email_enabled: boolean;
     email_smtp_host: string;
     email_smtp_port: number;
     email_smtp_user: string;
@@ -259,6 +337,9 @@ declare namespace API {
     verify_email_template: string;
     maintenance_email_template: string;
     expiration_email_template: string;
+    email_enable_verify: boolean;
+    email_enable_domain_suffix: boolean;
+    email_domain_suffix_list: string;
   };
 
   type EpayConfig = {
@@ -373,6 +454,7 @@ declare namespace API {
   type GetNodeListParams = {
     page: number;
     size: number;
+    tag?: string;
     group_id?: number;
     search?: string;
   };
@@ -384,6 +466,7 @@ declare namespace API {
   type GetNodeServerListRequest = {
     page: number;
     size: number;
+    tag?: string;
     group_id?: number;
     search?: string;
   };
@@ -391,6 +474,18 @@ declare namespace API {
   type GetNodeServerListResponse = {
     total: number;
     list: Server[];
+  };
+
+  type GetOAuthByPlatformParams = {
+    platform: string;
+  };
+
+  type GetOAuthByPlatformRequest = {
+    platform: string;
+  };
+
+  type GetOAuthConfigResponse = {
+    list: OAuthMethod[];
   };
 
   type GetOrderListParams = {
@@ -414,6 +509,23 @@ declare namespace API {
   type GetOrderListResponse = {
     total: number;
     list: Order[];
+  };
+
+  type GetSmsListParams = {
+    page: number;
+    size: number;
+    telephone?: string;
+  };
+
+  type GetSmsListRequest = {
+    page: number;
+    size: number;
+    telephone?: string;
+  };
+
+  type GetSmsListResponse = {
+    total: number;
+    list: Sms[];
   };
 
   type GetSubscribeDetailsParams = {
@@ -444,7 +556,7 @@ declare namespace API {
   };
 
   type GetSubscribeListResponse = {
-    list: Subscribe[];
+    list: SubscribeItem[];
     total: number;
   };
 
@@ -475,6 +587,14 @@ declare namespace API {
 
   type GetTicketRequest = {
     id: number;
+  };
+
+  type GetUserAuthMethodRequest = {
+    user_id: number;
+  };
+
+  type GetUserAuthMethodResponse = {
+    auth_methods: AuthMethod[];
   };
 
   type GetUserDetailParams = {
@@ -536,6 +656,16 @@ declare namespace API {
     online_users: OnlineUser[];
     status: ServerStatus;
     last_at: number;
+  };
+
+  type OAuthMethod = {
+    id: number;
+    platform: string;
+    config: Record<string, any>;
+    redirect: string;
+    enabled: boolean;
+    created_at: number;
+    updated_at: number;
   };
 
   type OnlineUser = {
@@ -612,9 +742,6 @@ declare namespace API {
   type RegisterConfig = {
     stop_register: boolean;
     enable_trial: boolean;
-    enable_email_verify: boolean;
-    enable_email_domain_suffix: boolean;
-    email_domain_suffix_list: string;
     enable_ip_register_limit: boolean;
     ip_register_limit: number;
     ip_register_limit_duration: number;
@@ -646,8 +773,17 @@ declare namespace API {
     reality_short_id: string;
   };
 
+  type SendSmsRequest = {
+    content: string;
+    area_code: string;
+    telephone: string;
+  };
+
   type Server = {
     id: number;
+    tags: string[];
+    country: string;
+    city: string;
     name: string;
     server_addr: string;
     relay_mode: string;
@@ -718,6 +854,46 @@ declare namespace API {
     site_logo: string;
   };
 
+  type Sms = {
+    id: string;
+    content: string;
+    platform: string;
+    areaCode: string;
+    telephone: string;
+    status: number;
+    created_at: number;
+  };
+
+  type SmsAuthenticateConfig = {
+    sms_enabled: boolean;
+    sms_limit: number;
+    sms_interval: number;
+    sms_expire_time: number;
+  };
+
+  type SmsConfig = {
+    sms_enabled: boolean;
+    sms_key: string;
+    sms_secret: string;
+    sms_template: string;
+    sms_template_code: string;
+    sms_template_param: string;
+    sms_platform: string;
+    sms_limit: number;
+    sms_interval: number;
+    sms_expire_time: number;
+  };
+
+  type SmsPlatformInfo = {
+    platform: string;
+    platform_url: string;
+    platform_field_description: Record<string, any>;
+  };
+
+  type SmsPlatformResponse = {
+    list: SmsPlatformInfo[];
+  };
+
   type SortItem = {
     id: number;
     sort: number;
@@ -775,6 +951,34 @@ declare namespace API {
     description: string;
     created_at: number;
     updated_at: number;
+  };
+
+  type SubscribeItem = {
+    id?: number;
+    name?: string;
+    description?: string;
+    unit_price?: number;
+    unit_time?: string;
+    discount?: SubscribeDiscount[];
+    replacement?: number;
+    inventory?: number;
+    traffic?: number;
+    speed_limit?: number;
+    device_limit?: number;
+    quota?: number;
+    group_id?: number;
+    server_group?: number[];
+    server?: number[];
+    show?: boolean;
+    sell?: boolean;
+    sort?: number;
+    deduction_ratio?: number;
+    allow_deduction?: boolean;
+    reset_cycle?: number;
+    renewal_reset?: boolean;
+    created_at?: number;
+    updated_at?: number;
+    sold: number;
   };
 
   type SubscribeSortRequest = {
@@ -869,10 +1073,21 @@ declare namespace API {
 
   type UpdateApplicationRequest = {
     id: number;
-    name: string;
-    subscribe_type: string;
     icon: string;
+    name: string;
+    description: string;
+    subscribe_type: string;
+    platform: ApplicationPlatform;
+  };
+
+  type UpdateApplicationVersionRequest = {
+    id: number;
     url: string;
+    version: string;
+    description: string;
+    platform: 'windows' | 'mac' | 'linux' | 'android' | 'ios' | 'harmony';
+    is_default: boolean;
+    application_id: number;
   };
 
   type UpdateCouponRequest = {
@@ -919,6 +1134,9 @@ declare namespace API {
 
   type UpdateNodeRequest = {
     id: number;
+    tags: string[];
+    country: string;
+    city: string;
     name: string;
     server_addr: string;
     relay_mode: string;
@@ -930,6 +1148,14 @@ declare namespace API {
     config: Record<string, any>;
     enable: boolean;
     sort: number;
+  };
+
+  type UpdateOAuthConfig = {
+    id: number;
+    platform: string;
+    config: Record<string, any>;
+    redirect: string;
+    enabled: boolean;
   };
 
   type UpdateOrderStatusRequest = {
@@ -990,7 +1216,6 @@ declare namespace API {
 
   type UpdateUserRequest = {
     id: number;
-    email: string;
     password: string;
     avatar: string;
     balance: number;
@@ -1001,7 +1226,6 @@ declare namespace API {
     referer_id: number;
     enable: boolean;
     is_admin: boolean;
-    valid_email: boolean;
     enable_email_notify: boolean;
     enable_telegram_notify: boolean;
     enable_balance_notify: boolean;
@@ -1012,7 +1236,6 @@ declare namespace API {
 
   type User = {
     id: number;
-    email: string;
     avatar: string;
     balance: number;
     commission: number;
@@ -1029,6 +1252,7 @@ declare namespace API {
     enable_login_notify: boolean;
     enable_subscribe_notify: boolean;
     enable_trade_notify: boolean;
+    auth_methods: AuthMethod[];
     created_at: number;
     updated_at: number;
     deleted_at?: number;
@@ -1050,6 +1274,17 @@ declare namespace API {
     order_id: number;
     balance: number;
     created_at: number;
+  };
+
+  type UserDevice = {
+    id: number;
+    user_id: number;
+    device_number: string;
+    online: boolean;
+    last_online: number;
+    enabled: boolean;
+    created_at: number;
+    updated_at: number;
   };
 
   type UserStatistics = {

@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "Zaman Dilimi Ekle",
+    "communicationKey": "İletişim Anahtarı",
+    "communicationKeyDescription": "Veri güvenliğini sağlamak için düğüm iletişim anahtarı",
+    "delete": "Sil",
+    "dynamicMultiplier": "Dinamik Çarpan",
+    "dynamicMultiplierDescription": "Dinamik Çarpan, farklı zaman dilimlerinde farklı düğümler için farklı çarpanlarla işlenen verileri ifade eder.",
+    "endTime": "Bitiş Zamanı",
+    "inputPlaceholder": "Giriniz",
+    "multiplier": "Çarpan",
+    "nodePullInterval": "Düğüm Çekme Aralığı",
+    "nodePullIntervalDescription": "Düğümlerin panelden veri çekme sıklığı (saniye cinsinden)",
+    "nodePushInterval": "Düğüm İtme Aralığı",
+    "nodePushIntervalDescription": "Düğümlerin panele veri itme sıklığı",
+    "reset": "Sıfırla",
+    "save": "Kaydet",
+    "saveSuccess": "Başarıyla Kaydedildi",
+    "startTime": "Başlangıç Zamanı",
+    "timeSlot": "Zaman Dilimi"
+  },
   "group": {
     "actions": "İşlemler",
     "cancel": "İptal",
@@ -46,7 +66,9 @@
     "form": {
       "allowInsecure": "Güvensizliğe izin ver",
       "cancel": "İptal",
+      "city": "Şehir",
       "confirm": "Onayla",
+      "country": "Ülke",
       "edit": "Düzenle",
       "editSecurity": "Güvenlik Ayarlarını Düzenle",
       "enableTLS": "TLS'i Etkinleştir",
@@ -100,6 +122,8 @@
       "serverName": "Sunucu Adı",
       "speedLimit": "Hız Sınırı",
       "speedLimitPlaceholder": "Sınırsız",
+      "tags": "Etiketler",
+      "tagsPlaceholder": "Birden fazla etiket girmek için Enter veya virgül (,) kullanın",
       "trafficRatio": "Trafik Oranı",
       "transport": "Taşıma Protokolü",
       "transportConfig": "Taşıma Protokolü Ayarları",
@@ -120,6 +144,7 @@
     "serverAddr": "Sunucu Adresi",
     "speedLimit": "Hız Sınırı",
     "status": "Durum",
+    "tags": "Etiketler",
     "trafficRatio": "Trafik Oranı",
     "type": "Tür",
     "updateSuccess": "Başarıyla güncellendi",
@@ -127,6 +152,7 @@
   },
   "tabs": {
     "node": "Düğüm",
+    "nodeConfig": "Düğüm Yapılandırması",
     "nodeGroup": "Düğüm Grubu"
   }
 }

@@ -58,6 +58,77 @@ export async function deleteApplication(
   });
 }
 
+/** get application config GET /v1/admin/system/application_config */
+export async function getApplicationConfig(options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.ApplicationConfig }>(
+    '/v1/admin/system/application_config',
+    {
+      method: 'GET',
+      ...(options || {}),
+    },
+  );
+}
+
+/** update application config PUT /v1/admin/system/application_config */
+export async function updateApplicationConfig(
+  body: API.ApplicationConfig,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/admin/system/application_config', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Update application version PUT /v1/admin/system/application_version */
+export async function updateApplicationVersion(
+  body: API.UpdateApplicationVersionRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/admin/system/application_version', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Create application version POST /v1/admin/system/application_version */
+export async function createApplicationVersion(
+  body: API.CreateApplicationVersionRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/admin/system/application_version', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Delete application DELETE /v1/admin/system/application_version */
+export async function deleteApplicationVersion(
+  body: API.DeleteApplicationVersionRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/admin/system/application_version', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** Get Currency Config GET /v1/admin/system/currency_config */
 export async function getCurrencyConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.CurrencyConfig }>('/v1/admin/system/currency_config', {
@@ -155,6 +226,47 @@ export async function updateNodeConfig(body: API.NodeConfig, options?: { [key: s
   });
 }
 
+/** Get oauth config GET /v1/admin/system/oauth_config */
+export async function getOAuthConfig(options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.GetOAuthConfigResponse }>(
+    '/v1/admin/system/oauth_config',
+    {
+      method: 'GET',
+      ...(options || {}),
+    },
+  );
+}
+
+/** Update oauth config PUT /v1/admin/system/oauth_config */
+export async function updateOAuthConfig(
+  body: API.UpdateOAuthConfig,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/admin/system/oauth_config', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Get OAuth Config By Platform GET /v1/admin/system/oauth/platform */
+export async function getOAuthByPlatform(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.GetOAuthByPlatformParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: API.OAuthMethod }>('/v1/admin/system/oauth/platform', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
 /** Get register config GET /v1/admin/system/register_config */
 export async function getRegisterConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.RegisterConfig }>('/v1/admin/system/register_config', {
@@ -221,6 +333,37 @@ export async function updateSiteConfig(body: API.SiteConfig, options?: { [key: s
   });
 }
 
+/** Get sms config GET /v1/admin/system/sms_config */
+export async function getSmsConfig(options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.SmsConfig }>('/v1/admin/system/sms_config', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** Get sms config PUT /v1/admin/system/sms_config */
+export async function updateSmsConfig(body: API.SmsConfig, options?: { [key: string]: any }) {
+  return request<API.Response & { data?: any }>('/v1/admin/system/sms_config', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Get sms config GET /v1/admin/system/sms_platform */
+export async function getSmsPlatform(options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.SmsPlatformResponse }>(
+    '/v1/admin/system/sms_platform',
+    {
+      method: 'GET',
+      ...(options || {}),
+    },
+  );
+}
+
 /** Get subscribe config GET /v1/admin/system/subscribe_config */
 export async function getSubscribeConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.SubscribeConfig }>(
@@ -284,6 +427,18 @@ export async function testEmailSmtp(
   options?: { [key: string]: any },
 ) {
   return request<API.Response & { data?: any }>('/v1/admin/system/test_email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Test sms send POST /v1/admin/system/test_sms */
+export async function testSmsSend(body: API.SendSmsRequest, options?: { [key: string]: any }) {
+  return request<API.Response & { data?: any }>('/v1/admin/system/test_sms', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

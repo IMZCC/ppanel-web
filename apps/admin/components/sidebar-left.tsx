@@ -1,7 +1,6 @@
 'use client';
 import { navs } from '@/config/navs';
 import useGlobalStore from '@/config/use-global';
-import { Icon } from '@iconify/react';
 import {
   Sidebar,
   SidebarContent,
@@ -13,6 +12,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@workspace/ui/components/sidebar';
+import { Icon } from '@workspace/ui/custom-components/icon';
 import { useTranslations } from 'next-intl';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
@@ -61,7 +61,11 @@ export function SidebarLeft({ ...props }: React.ComponentProps<typeof Sidebar>) 
                       <SidebarMenuButton
                         asChild
                         tooltip={t(item.title)}
-                        isActive={item.url === pathname}
+                        isActive={
+                          item.url === '/dashboard'
+                            ? pathname === item.url
+                            : pathname.startsWith(item.url)
+                        }
                       >
                         <Link href={item.url}>
                           {item.icon && <Icon icon={item.icon} />}

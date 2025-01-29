@@ -1,0 +1,13 @@
+{
+  "ipRegistrationLimit": "จำกัดการลงทะเบียน IP",
+  "ipRegistrationLimitDescription": "เมื่อเปิดใช้งาน IP ที่ตรงตามข้อกำหนดของกฎจะถูกจำกัดไม่ให้ลงทะเบียน; โปรดทราบว่าการกำหนด IP อาจทำให้เกิดปัญหาเนื่องจาก CDN หรือพร็อกซีส่วนหน้า",
+  "penaltyTime": "เวลาลงโทษ (นาที)",
+  "penaltyTimeDescription": "ผู้ใช้ต้องรอให้เวลาการลงโทษหมดอายุก่อนที่จะลงทะเบียนใหม่ได้",
+  "registrationLimitCount": "จำนวนจำกัดการลงทะเบียน",
+  "registrationLimitCountDescription": "เปิดใช้งานบทลงโทษหลังจากถึงขีดจำกัดการลงทะเบียน",
+  "saveSuccess": "บันทึกสำเร็จ",
+  "stopNewUserRegistration": "หยุดการลงทะเบียนผู้ใช้ใหม่",
+  "stopNewUserRegistrationDescription": "เมื่อเปิดใช้งาน จะไม่มีใครสามารถลงทะเบียนได้",
+  "trialRegistration": "การลงทะเบียนทดลองใช้",
+  "trialRegistrationDescription": "เปิดใช้งานการลงทะเบียนทดลอง; ปรับเปลี่ยนแพ็คเกจทดลองและระยะเวลาก่อน"
+}

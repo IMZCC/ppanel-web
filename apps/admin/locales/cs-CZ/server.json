@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "Přidat časový úsek",
+    "communicationKey": "Komunikační klíč",
+    "communicationKeyDescription": "Klíč pro komunikaci uzlů k zajištění bezpečnosti dat",
+    "delete": "Smazat",
+    "dynamicMultiplier": "Dynamický multiplikátor",
+    "dynamicMultiplierDescription": "Dynamický multiplikátor označuje zpracování posílaných dat s různými multiplikátory pro různé uzly během různých časových období.",
+    "endTime": "Konec",
+    "inputPlaceholder": "Zadejte",
+    "multiplier": "Multiplikátor",
+    "nodePullInterval": "Interval stahování uzlu",
+    "nodePullIntervalDescription": "Frekvence (v sekundách) pro stahování dat uzly z panelu",
+    "nodePushInterval": "Interval odesílání uzlu",
+    "nodePushIntervalDescription": "Frekvence odesílání dat uzly do panelu",
+    "reset": "Resetovat",
+    "save": "Uložit",
+    "saveSuccess": "Úspěšně uloženo",
+    "startTime": "Začátek",
+    "timeSlot": "Časový úsek"
+  },
   "group": {
     "actions": "Akce",
     "cancel": "Zrušit",
@@ -46,7 +66,9 @@
     "form": {
       "allowInsecure": "Povolit nezabezpečené",
       "cancel": "Zrušit",
+      "city": "Město",
       "confirm": "Potvrdit",
+      "country": "Země",
       "edit": "Upravit",
       "editSecurity": "Upravit nastavení zabezpečení",
       "enableTLS": "Povolit TLS",
@@ -100,6 +122,8 @@
       "serverName": "Název služby",
       "speedLimit": "Omezení rychlosti",
       "speedLimitPlaceholder": "Bez omezení",
+      "tags": "Štítky",
+      "tagsPlaceholder": "Použijte Enter nebo čárku (,) pro zadání více štítků",
       "trafficRatio": "Poměr provozu",
       "transport": "Přenosový protokol",
       "transportConfig": "Nastavení přenosového protokolu",
@@ -120,6 +144,7 @@
     "serverAddr": "Adresa serveru",
     "speedLimit": "Omezení rychlosti",
     "status": "Stav",
+    "tags": "Štítky",
     "trafficRatio": "Poměr provozu",
     "type": "Typ",
     "updateSuccess": "Úspěšně aktualizováno",
@@ -127,6 +152,7 @@
   },
   "tabs": {
     "node": "Uzlu",
+    "nodeConfig": "Konfigurace uzlu",
     "nodeGroup": "Skupina uzlů"
   }
 }

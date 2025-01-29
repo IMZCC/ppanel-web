@@ -5,7 +5,6 @@ import { SubscribeBilling } from '@/components/subscribe/billing';
 import { SubscribeDetail } from '@/components/subscribe/detail';
 import useGlobalStore from '@/config/use-global';
 import { checkoutOrder, queryOrderDetail } from '@/services/user/order';
-import { Icon } from '@iconify/react';
 import { useQuery } from '@tanstack/react-query';
 import { Badge } from '@workspace/ui/components/badge';
 import { Button } from '@workspace/ui/components/button';
@@ -17,6 +16,7 @@ import {
   CardTitle,
 } from '@workspace/ui/components/card';
 import { Separator } from '@workspace/ui/components/separator';
+import { Icon } from '@workspace/ui/custom-components/icon';
 import { formatDate } from '@workspace/ui/utils';
 import { useCountDown } from 'ahooks';
 import { addMinutes, format } from 'date-fns';
@@ -175,15 +175,9 @@ export default function Page() {
               <div className='flex gap-4'>
                 <Button
                   onClick={() => {
-                    const width = 600;
-                    const height = 800;
-                    const left = (screen.width - width) / 2;
-                    const top = (screen.height - height) / 2;
-                    window.open(
-                      payment?.checkout_url,
-                      'newWindow',
-                      `width=${width},height=${height},top=${top},left=${left},menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1`,
-                    );
+                    if (payment?.checkout_url) {
+                      window.location.href = payment?.checkout_url;
+                    }
                   }}
                 >
                   {t('goToPayment')}

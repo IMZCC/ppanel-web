@@ -72,8 +72,9 @@ export default function Page() {
           header: 'ID',
         },
         {
-          accessorKey: 'email',
+          accessorKey: 'auth_methods',
           header: t('userName'),
+          cell: ({ row }) => row.original.auth_methods?.[0]?.auth_identifier || '--',
         },
         {
           accessorKey: 'balance',

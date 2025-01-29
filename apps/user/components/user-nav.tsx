@@ -3,7 +3,6 @@
 import { navs } from '@/config/navs';
 import useGlobalStore from '@/config/use-global';
 import { Logout } from '@/utils/common';
-import { Icon } from '@iconify/react';
 import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/components/avatar';
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -15,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@workspace/ui/components/dropdown-menu';
+import { Icon } from '@workspace/ui/custom-components/icon';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
@@ -31,7 +31,7 @@ export function UserNav() {
             <Avatar className='size-8'>
               <AvatarImage alt={user?.avatar ?? ''} src={user?.avatar ?? ''} />
               <AvatarFallback className='rounded-none bg-transparent'>
-                {user?.email?.[0]?.toUpperCase()}
+                {user?.auth_methods?.[0]?.auth_identifier.toUpperCase().charAt(0)}
               </AvatarFallback>
             </Avatar>
           </Button>
@@ -40,7 +40,9 @@ export function UserNav() {
           <DropdownMenuLabel className='font-normal'>
             <div className='flex flex-col space-y-1'>
               <p className='text-muted-foreground text-xs leading-none'>ID: {user?.id}</p>
-              <p className='text-sm font-medium leading-none'>{user?.email}</p>
+              <p className='text-sm font-medium leading-none'>
+                {user?.auth_methods?.[0]?.auth_identifier}
+              </p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />

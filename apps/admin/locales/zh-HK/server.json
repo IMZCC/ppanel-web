@@ -1,4 +1,24 @@
 {
+  "config": {
+    "addTimeSlot": "新增時間段",
+    "communicationKey": "通訊密鑰",
+    "communicationKeyDescription": "節點通訊的密鑰，以確保數據安全",
+    "delete": "刪除",
+    "dynamicMultiplier": "動態倍數",
+    "dynamicMultiplierDescription": "動態倍數指在不同時間段內，對不同節點的推送數據進行不同倍數的處理。",
+    "endTime": "結束時間",
+    "inputPlaceholder": "輸入",
+    "multiplier": "倍數",
+    "nodePullInterval": "節點拉取間隔",
+    "nodePullIntervalDescription": "節點從面板獲取數據的頻率（以秒為單位）",
+    "nodePushInterval": "節點推送間隔",
+    "nodePushIntervalDescription": "節點向面板推送數據的頻率",
+    "reset": "重置",
+    "save": "保存",
+    "saveSuccess": "保存成功",
+    "startTime": "開始時間",
+    "timeSlot": "時間段"
+  },
   "group": {
     "actions": "操作",
     "cancel": "取消",
@@ -46,7 +66,9 @@
     "form": {
       "allowInsecure": "允許不安全",
       "cancel": "取消",
+      "city": "城市",
       "confirm": "確認",
+      "country": "國家",
       "edit": "編輯",
       "editSecurity": "編輯安全性配置",
       "enableTLS": "啟用TLS",
@@ -100,6 +122,8 @@
       "serverName": "服務名稱",
       "speedLimit": "速度限制",
       "speedLimitPlaceholder": "無限制",
+      "tags": "標籤",
+      "tagsPlaceholder": "使用 Enter 或逗號 (,) 輸入多個標籤",
       "trafficRatio": "流量速率",
       "transport": "傳輸協議",
       "transportConfig": "傳輸協議配置",
@@ -120,6 +144,7 @@
     "serverAddr": "伺服器地址",
     "speedLimit": "速度限制",
     "status": "狀態",
+    "tags": "標籤",
     "trafficRatio": "流量速率",
     "type": "類型",
     "updateSuccess": "更新成功",
@@ -127,6 +152,7 @@
   },
   "tabs": {
     "node": "節點",
+    "nodeConfig": "節點配置",
     "nodeGroup": "節點組"
   }
 }

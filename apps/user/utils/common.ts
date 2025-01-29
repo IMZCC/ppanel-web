@@ -1,5 +1,6 @@
 import { locales, NEXT_PUBLIC_DEFAULT_LANGUAGE } from '@/config/constants';
 import { isBrowser } from '@workspace/ui/utils';
+import { UAParser } from 'ua-parser-js';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies(null, {
@@ -37,40 +38,61 @@ export function setRedirectUrl(value?: string) {
 }
 
 export function getRedirectUrl() {
-  return sessionStorage.getItem('redirect-url') ?? '/dashboard';
+  let url = sessionStorage.getItem('redirect-url') ?? '/dashboard';
+  if (url.startsWith('/oauth/') || url.startsWith('/auth')) {
+    url = '/dashboard';
+  }
+  sessionStorage.removeItem('redirect-url');
+  return url;
 }
 
 export function Logout() {
   if (!isBrowser()) return;
   cookies.remove('Authorization');
   const pathname = location.pathname;
-  if (!['', '/', '/auth', '/tos'].includes(pathname)) {
+  if (!['', '/', '/auth', '/tos'].includes(pathname) && !pathname.startsWith('/oauth/')) {
     setRedirectUrl(location.pathname);
     location.href = `/auth`;
   }
 }
 
-export function getPlatform(): 'windows' | 'mac' | 'linux' | 'android' | 'ios' {
-  if (typeof navigator === 'undefined') {
-    console.log('This function can only run in a browser environment.');
-    return 'windows';
-  }
+export function getPlatform(): 'windows' | 'mac' | 'linux' | 'android' | 'ios' | 'harmony' {
+  const parser = new UAParser();
+  const os = parser.getOS();
+  const osName = os.name?.toLowerCase() || '';
 
-  const userAgent = navigator.userAgent;
-
-  const platformPatterns: Record<string, RegExp> = {
-    windows: /Windows NT/,
-    mac: /Mac OS X/,
-    linux: /Linux/,
-    android: /Android/,
-    ios: /iPhone OS|iPad; CPU OS/,
-  };
-
-  for (const [platform, regex] of Object.entries(platformPatterns)) {
-    if (regex.test(userAgent)) {
-      return platform as 'windows' | 'mac' | 'linux' | 'android' | 'ios';
-    }
-  }
+  if (osName.includes('windows')) return 'windows';
+  if (osName.includes('mac')) return 'mac';
+  if (
+    osName.includes('linux') ||
+    osName.includes('ubuntu') ||
+    osName.includes('debian') ||
+    osName.includes('fedora') ||
+    osName.includes('red hat') ||
+    osName.includes('centos') ||
+    osName.includes('arch')
+  )
+    return 'linux';
+  if (osName.includes('android')) return 'android';
+  if (osName.includes('ios')) return 'ios';
+  if (osName.includes('harmony')) return 'harmony';
 
   return 'windows';
+}
+
+export function getAllUrlParams() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(window.location.hash.substring(1));
+
+  const params: { [key: string]: string } = {};
+
+  for (const [key, value] of searchParams.entries()) {
+    params[key] = value;
+  }
+
+  for (const [key, value] of hashParams.entries()) {
+    params[key] = value;
+  }
+
+  return params;
 }

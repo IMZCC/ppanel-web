@@ -3,7 +3,6 @@
 import { getNodeGroupList, getNodeList } from '@/services/admin/server';
 import { getSubscribeGroupList } from '@/services/admin/subscribe';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Icon } from '@iconify/react';
 import { useQuery } from '@tanstack/react-query';
 import {
   Accordion,
@@ -38,6 +37,7 @@ import { Combobox } from '@workspace/ui/custom-components/combobox';
 import { ArrayInput } from '@workspace/ui/custom-components/dynamic-Inputs';
 import { JSONEditor } from '@workspace/ui/custom-components/editor';
 import { EnhancedInput } from '@workspace/ui/custom-components/enhanced-input';
+import { Icon } from '@workspace/ui/custom-components/icon';
 import { evaluateWithPrecision, unitConversion } from '@workspace/ui/utils';
 import { CreditCard, Server, Settings } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -56,7 +56,7 @@ interface SubscribeFormProps<T> {
 }
 
 const defaultValues = {
-  inventory: -1,
+  inventory: 0,
   speed_limit: 0,
   device_limit: 0,
   traffic: 0,
@@ -319,10 +319,10 @@ export default function SubscribeForm<T extends Record<string, any>>({
                             <FormLabel>{t('form.inventory')}</FormLabel>
                             <FormControl>
                               <EnhancedInput
-                                placeholder={`-1 ${t('form.noLimit')}`}
+                                placeholder={t('form.noLimit')}
                                 type='number'
-                                {...field}
-                                min={-1}
+                                value={field.value === -1 ? 0 : field.value}
+                                min={0}
                                 onValueChange={(value) => {
                                   form.setValue(field.name, value);
                                 }}

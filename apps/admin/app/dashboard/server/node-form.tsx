@@ -2,7 +2,6 @@
 
 import { getNodeGroupList } from '@/services/admin/server';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Icon } from '@iconify/react';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '@workspace/ui/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/card';
@@ -35,6 +34,8 @@ import { Tabs, TabsList, TabsTrigger } from '@workspace/ui/components/tabs';
 import { Combobox } from '@workspace/ui/custom-components/combobox';
 import { ArrayInput } from '@workspace/ui/custom-components/dynamic-Inputs';
 import { EnhancedInput } from '@workspace/ui/custom-components/enhanced-input';
+import { Icon } from '@workspace/ui/custom-components/icon';
+import TagInput from '@workspace/ui/custom-components/tag-input';
 import { cn } from '@workspace/ui/lib/utils';
 import { unitConversion } from '@workspace/ui/utils';
 import { useTranslations } from 'next-intl';
@@ -63,6 +64,7 @@ export default function NodeForm<T extends { [x: string]: any }>({
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      tags: [],
       traffic_ratio: 1,
       protocol: 'shadowsocks',
       ...initialValues,
@@ -150,6 +152,61 @@ export default function NodeForm<T extends { [x: string]: any }>({
                           }))}
                           onChange={(value) => {
                             form.setValue(field.name, value || 0);
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className='grid grid-cols-5 gap-2'>
+                <FormField
+                  control={form.control}
+                  name='tags'
+                  render={({ field }) => (
+                    <FormItem className='col-span-3'>
+                      <FormLabel>{t('form.tags')}</FormLabel>
+                      <FormControl>
+                        <TagInput
+                          placeholder={t('form.tagsPlaceholder')}
+                          value={field.value || []}
+                          onChange={(value) => form.setValue(field.name, value)}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='country'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('form.country')}</FormLabel>
+                      <FormControl>
+                        <EnhancedInput
+                          {...field}
+                          onValueChange={(value) => {
+                            form.setValue(field.name, value);
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='city'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('form.city')}</FormLabel>
+                      <FormControl>
+                        <EnhancedInput
+                          {...field}
+                          onValueChange={(value) => {
+                            form.setValue(field.name, value);
                           }}
                         />
                       </FormControl>

@@ -2,9 +2,29 @@
 /* eslint-disable */
 import request from '@/utils/request';
 
+/** Get Tos Content GET /v1/common/application */
+export async function getApplication(options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.GetAppcationResponse }>('/v1/common/application', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
 /** Get verification code POST /v1/common/send_code */
 export async function sendEmailCode(body: API.SendCodeRequest, options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.SendCodeResponse }>('/v1/common/send_code', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Get sms verification code POST /v1/common/send_sms_code */
+export async function sendSmsCode(body: API.SendSmsCodeRequest, options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.SendCodeResponse }>('/v1/common/send_sms_code', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

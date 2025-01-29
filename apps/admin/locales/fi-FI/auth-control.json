@@ -1,0 +1,13 @@
+{
+  "ipRegistrationLimit": "IP-rekisteröintirajoitus",
+  "ipRegistrationLimitDescription": "Kun tämä on käytössä, säännön vaatimukset täyttävät IP-osoitteet estetään rekisteröitymästä; huomaa, että IP-määritys voi aiheuttaa ongelmia CDN:ien tai etupään välityspalvelimien vuoksi",
+  "penaltyTime": "Rangaistusaika (minuuttia)",
+  "penaltyTimeDescription": "Käyttäjien on odotettava rangaistusajan päättymistä ennen kuin he voivat rekisteröityä uudelleen",
+  "registrationLimitCount": "Rekisteröitymisrajoituksen määrä",
+  "registrationLimitCountDescription": "Ota käyttöön rangaistus rekisteröintirajan saavuttamisen jälkeen",
+  "saveSuccess": "Tallennus onnistui",
+  "stopNewUserRegistration": "Lopeta uusien käyttäjien rekisteröinti",
+  "stopNewUserRegistrationDescription": "Kun tämä on käytössä, kukaan ei voi rekisteröityä",
+  "trialRegistration": "Kokeilurekisteröinti",
+  "trialRegistrationDescription": "Ota kokeilurekisteröinti käyttöön; muokkaa ensin kokeilupakettia ja kestoa"
+}
