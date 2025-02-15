@@ -4,6 +4,7 @@
   "Auth Control": "Yetki Kontrolü",
   "Coupon Management": "Kupon Yönetimi",
   "Dashboard": "Gösterge Paneli",
+  "Device": "Cihaz",
   "Document Management": "Belge Yönetimi",
   "Email": "E-posta",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Bilet Yönetimi",
   "Twitter": "Twitter",
   "User": "Kullanıcı",
+  "User Detail": "Kullanıcı Detayı",
   "User Management": "Kullanıcı Yönetimi"
 }

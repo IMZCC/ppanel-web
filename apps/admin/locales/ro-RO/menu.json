@@ -4,6 +4,7 @@
   "Auth Control": "Control Autentificare",
   "Coupon Management": "Managementul Cuponului",
   "Dashboard": "Tablou de bord",
+  "Device": "Dispozitiv",
   "Document Management": "Managementul documentelor",
   "Email": "E-mail",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Gestionarea Biletelor",
   "Twitter": "Twitter",
   "User": "Utilizator",
+  "User Detail": "Detalii Utilizator",
   "User Management": "Gestionarea Utilizatorilor"
 }

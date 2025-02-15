@@ -29,6 +29,7 @@ export default function RegisterForm({
   const t = useTranslations('auth.register');
   const { common } = useGlobalStore();
   const { verify, auth, invite } = common;
+  const { enable_whitelist, whitelist } = auth.mobile;
 
   const formSchema = z
     .object({
@@ -87,6 +88,7 @@ export default function RegisterForm({
                                 className='w-32 rounded-r-none border-r-0'
                                 placeholder='Area code...'
                                 value={field.value}
+                                whitelist={enable_whitelist ? whitelist : []}
                                 onChange={(value) => {
                                   if (value.phone) {
                                     form.setValue('telephone_area_code', value.phone);
@@ -153,7 +155,14 @@ export default function RegisterForm({
                         {...field}
                         value={field.value as string}
                       />
-                      <SendCode type='phone' params={form.getValues()} />
+
+                      <SendCode
+                        type='phone'
+                        params={{
+                          ...form.getValues(),
+                          type: 1,
+                        }}
+                      />
                     </div>
                   </FormControl>
                   <FormMessage />

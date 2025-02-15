@@ -47,8 +47,11 @@
     "60002": "Bu abonelik şu anda kullanılamıyor, lütfen daha sonra tekrar deneyin.",
     "60003": "Mevcut bir abonelik tespit edildi. Lütfen devam etmeden önce iptal edin.",
     "60004": "Aboneliğin aktif kullanıcıları olduğu için şu anda silinemiyor.",
+    "60005": "Tekli abonelik moduğu kullanıcı sınırını aştı.",
     "70001": "Doğrulama kodu hatalı, lütfen tekrar girin.",
     "80001": "Görev sıraya başarıyla eklenemedi, lütfen daha sonra tekrar deneyin.",
+    "90001": "Lütfen DEBUG modunu devre dışı bırakın ve tekrar deneyin.",
+    "90015": "Bu hesap bugünkü gönderim limitine ulaştı, lütfen yarın tekrar deneyin.",
     "undefined": "Sistem hatası oluştu, lütfen daha sonra tekrar deneyin."
   },
   "unlimited": "sınırsız"

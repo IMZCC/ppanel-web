@@ -4,6 +4,7 @@
   "Auth Control": "Kiểm Soát Xác Thực",
   "Coupon Management": "Quản lý phiếu giảm giá",
   "Dashboard": "Bảng điều khiển",
+  "Device": "Thiết bị",
   "Document Management": "Quản lý tài liệu",
   "Email": "Email",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Quản lý phiếu hỗ trợ",
   "Twitter": "Twitter",
   "User": "Người dùng",
+  "User Detail": "Chi Tiết Người Dùng",
   "User Management": "Quản lý người dùng"
 }

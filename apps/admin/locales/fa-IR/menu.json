@@ -4,6 +4,7 @@
   "Auth Control": "کنترل احراز هویت",
   "Coupon Management": "مدیریت کوپن",
   "Dashboard": "داشبورد",
+  "Device": "دستگاه",
   "Document Management": "مدیریت اسناد",
   "Email": "ایمیل",
   "Facebook": "فیس‌بوک",
@@ -24,5 +25,6 @@
   "Ticket Management": "مدیریت بلیط",
   "Twitter": "توییتر",
   "User": "کاربر",
+  "User Detail": "جزئیات کاربر",
   "User Management": "مدیریت کاربران"
 }

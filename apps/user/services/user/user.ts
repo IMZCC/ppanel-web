@@ -42,6 +42,36 @@ export async function queryUserBalanceLog(options?: { [key: string]: any }) {
   );
 }
 
+/** Update Bind Email PUT /v1/public/user/bind_email */
+export async function updateBindEmail(
+  body: API.UpdateBindEmailRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/public/user/bind_email', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Update Bind Mobile PUT /v1/public/user/bind_mobile */
+export async function updateBindMobile(
+  body: API.UpdateBindMobileRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/public/user/bind_mobile', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** Bind OAuth POST /v1/public/user/bind_oauth */
 export async function bindOAuth(body: API.BindOAuthRequest, options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.BindOAuthResponse }>('/v1/public/user/bind_oauth', {
@@ -106,27 +136,27 @@ export async function queryUserInfo(options?: { [key: string]: any }) {
   });
 }
 
+/** Get Login Log GET /v1/public/user/login_log */
+export async function getLoginLog(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.GetLoginLogParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: API.GetLoginLogResponse }>('/v1/public/user/login_log', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
 /** Update User Notify PUT /v1/public/user/notify */
 export async function updateUserNotify(
   body: API.UpdateUserNotifyRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.Response & { data?: any }>('/v1/public/user/notify', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** Update User Notify Setting PUT /v1/public/user/notify_setting */
-export async function updateUserNotifySetting(
-  body: API.UpdateUserNotifySettingRequet,
-  options?: { [key: string]: any },
-) {
-  return request<API.Response & { data?: any }>('/v1/public/user/notify_setting', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -168,6 +198,24 @@ export async function queryUserSubscribe(options?: { [key: string]: any }) {
     '/v1/public/user/subscribe',
     {
       method: 'GET',
+      ...(options || {}),
+    },
+  );
+}
+
+/** Get Subscribe Log GET /v1/public/user/subscribe_log */
+export async function getSubscribeLog(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.GetSubscribeLogParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: API.GetSubscribeLogResponse }>(
+    '/v1/public/user/subscribe_log',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
       ...(options || {}),
     },
   );
@@ -236,4 +284,16 @@ export async function preUnsubscribe(
       ...(options || {}),
     },
   );
+}
+
+/** Verify Email POST /v1/public/user/verify_email */
+export async function verifyEmail(body: API.VerifyEmailRequest, options?: { [key: string]: any }) {
+  return request<API.Response & { data?: any }>('/v1/public/user/verify_email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
 }

@@ -32,7 +32,7 @@ export default function ResetForm({
   const formSchema = z.object({
     email: z.string().email(t('email')),
     password: z.string(),
-    code: auth?.email?.email_enable_verify ? z.string() : z.string().nullish(),
+    code: auth?.email?.enable_verify ? z.string() : z.string().nullish(),
     cf_token:
       verify.enable_register_verify && verify.turnstile_site_key
         ? z.string()
@@ -59,20 +59,8 @@ export default function ResetForm({
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder='Enter your password...' type='password' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
 
-          {auth?.email?.email_enable_verify && (
+          {auth?.email?.enable_verify && (
             <FormField
               control={form.control}
               name='code'
@@ -101,6 +89,18 @@ export default function ResetForm({
               )}
             />
           )}
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder='Enter your new password...' type='password' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           {verify.enable_reset_password_verify && (
             <FormField
               control={form.control}

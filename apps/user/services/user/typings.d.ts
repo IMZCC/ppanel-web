@@ -58,15 +58,16 @@ declare namespace API {
   };
 
   type AuthConfig = {
-    sms: SmsAuthenticateConfig;
+    mobile: MobileAuthenticateConfig;
     email: EmailAuthticateConfig;
-    register: RegisterConfig;
+    register: PubilcRegisterConfig;
   };
 
-  type AuthMethod = {
-    auth_type: string;
-    auth_identifier: string;
-    verified: boolean;
+  type AuthMethodConfig = {
+    id: number;
+    method: string;
+    config: Record<string, any>;
+    enabled: boolean;
   };
 
   type BindOAuthCallbackRequest = {
@@ -155,26 +156,10 @@ declare namespace API {
   };
 
   type EmailAuthticateConfig = {
-    email_enabled: boolean;
-    email_enable_verify: boolean;
-    email_enable_domain_suffix: boolean;
-    email_domain_suffix_list: string;
-  };
-
-  type EmailSmtpConfig = {
-    email_enabled: boolean;
-    email_smtp_host: string;
-    email_smtp_port: number;
-    email_smtp_user: string;
-    email_smtp_pass: string;
-    email_smtp_from: string;
-    email_smtp_ssl: boolean;
-    verify_email_template: string;
-    maintenance_email_template: string;
-    expiration_email_template: string;
-    email_enable_verify: boolean;
-    email_enable_domain_suffix: boolean;
-    email_domain_suffix_list: string;
+    enable: boolean;
+    enable_verify: boolean;
+    enable_domain_suffix: boolean;
+    domain_suffix_list: string;
   };
 
   type Follow = {
@@ -190,8 +175,38 @@ declare namespace API {
     list: PaymentConfig[];
   };
 
+  type GetLoginLogParams = {
+    page: number;
+    size: number;
+  };
+
+  type GetLoginLogRequest = {
+    page: number;
+    size: number;
+  };
+
+  type GetLoginLogResponse = {
+    list: UserLoginLog[];
+    total: number;
+  };
+
   type GetOAuthMethodsResponse = {
-    methods: AuthMethod[];
+    methods: UserAuthMethod[];
+  };
+
+  type GetSubscribeLogParams = {
+    page: number;
+    size: number;
+  };
+
+  type GetSubscribeLogRequest = {
+    page: number;
+    size: number;
+  };
+
+  type GetSubscribeLogResponse = {
+    list: UserSubscribeLog[];
+    total: number;
   };
 
   type GetUserTicketDetailRequest = {
@@ -235,6 +250,24 @@ declare namespace API {
     only_first_purchase: boolean;
   };
 
+  type MessageLog = {
+    id: number;
+    type: string;
+    platform: string;
+    to: string;
+    subject: string;
+    content: string;
+    status: number;
+    created_at: number;
+    updated_at: number;
+  };
+
+  type MobileAuthenticateConfig = {
+    enable: boolean;
+    enable_whitelist: boolean;
+    whitelist: string[];
+  };
+
   type NodeConfig = {
     node_secret: string;
     node_pull_interval: number;
@@ -251,16 +284,6 @@ declare namespace API {
     online_users: OnlineUser[];
     status: ServerStatus;
     last_at: number;
-  };
-
-  type OAuthMethod = {
-    id: number;
-    platform: string;
-    config: Record<string, any>;
-    redirect: string;
-    enabled: boolean;
-    created_at: number;
-    updated_at: number;
   };
 
   type OnlineUser = {
@@ -346,6 +369,17 @@ declare namespace API {
 
   type PreUnsubscribeResponse = {
     deduction_amount: number;
+  };
+
+  type PubilcRegisterConfig = {
+    stop_register: boolean;
+    enable_ip_register_limit: boolean;
+    ip_register_limit: number;
+    ip_register_limit_duration: number;
+  };
+
+  type PubilcVerifyCodeConfig = {
+    verify_code_interval: number;
   };
 
   type PurchaseOrderRequest = {
@@ -481,6 +515,9 @@ declare namespace API {
   type RegisterConfig = {
     stop_register: boolean;
     enable_trial: boolean;
+    trial_subscribe: number;
+    trial_time: number;
+    trial_time_unit: string;
     enable_ip_register_limit: boolean;
     ip_register_limit: number;
     ip_register_limit_duration: number;
@@ -559,6 +596,16 @@ declare namespace API {
     updated_at: number;
   };
 
+  type ServerRuleGroup = {
+    id: number;
+    name: string;
+    icon: string;
+    description: string;
+    enable: boolean;
+    created_at: number;
+    updated_at: number;
+  };
+
   type ServerStatus = {
     cpu: number;
     mem: number;
@@ -577,26 +624,6 @@ declare namespace API {
     site_name: string;
     site_desc: string;
     site_logo: string;
-  };
-
-  type SmsAuthenticateConfig = {
-    sms_enabled: boolean;
-    sms_limit: number;
-    sms_interval: number;
-    sms_expire_time: number;
-  };
-
-  type SmsConfig = {
-    sms_enabled: boolean;
-    sms_key: string;
-    sms_secret: string;
-    sms_template: string;
-    sms_template_code: string;
-    sms_template_param: string;
-    sms_platform: string;
-    sms_limit: number;
-    sms_interval: number;
-    sms_expire_time: number;
   };
 
   type SortItem = {
@@ -689,6 +716,16 @@ declare namespace API {
     tos_content: string;
   };
 
+  type TrafficLog = {
+    id: number;
+    server_id: number;
+    user_id: number;
+    subscribe_id: number;
+    download: number;
+    upload: number;
+    timestamp: number;
+  };
+
   type TransportConfig = {
     path: string;
     host: string;
@@ -716,17 +753,21 @@ declare namespace API {
     id: number;
   };
 
+  type UpdateBindEmailRequest = {
+    email: string;
+  };
+
+  type UpdateBindMobileRequest = {
+    area_code: string;
+    mobile: string;
+    code: string;
+  };
+
   type UpdateUserNotifyRequest = {
     enable_balance_notify: boolean;
     enable_login_notify: boolean;
     enable_subscribe_notify: boolean;
     enable_trade_notify: boolean;
-  };
-
-  type UpdateUserNotifySettingRequet = {
-    telegram: number;
-    enable_email_notify: boolean;
-    enable_telegram_notify: boolean;
   };
 
   type UpdateUserPasswordRequest = {
@@ -749,14 +790,12 @@ declare namespace API {
     referer_id: number;
     enable: boolean;
     is_admin?: boolean;
-    valid_email: boolean;
-    enable_email_notify: boolean;
-    enable_telegram_notify: boolean;
     enable_balance_notify: boolean;
     enable_login_notify: boolean;
     enable_subscribe_notify: boolean;
     enable_trade_notify: boolean;
-    auth_methods: AuthMethod[];
+    auth_methods: UserAuthMethod[];
+    user_devices: UserDevice[];
     created_at: number;
     updated_at: number;
     deleted_at?: number;
@@ -768,6 +807,12 @@ declare namespace API {
     avatar: string;
     registered_at: number;
     enable: boolean;
+  };
+
+  type UserAuthMethod = {
+    auth_type: string;
+    auth_identifier: string;
+    verified: boolean;
   };
 
   type UserBalanceLog = {
@@ -782,13 +827,22 @@ declare namespace API {
 
   type UserDevice = {
     id: number;
-    user_id: number;
-    device_number: string;
+    ip: string;
+    imei: string;
+    user_agent: string;
     online: boolean;
-    last_online: number;
     enabled: boolean;
     created_at: number;
     updated_at: number;
+  };
+
+  type UserLoginLog = {
+    id: number;
+    user_id: number;
+    login_ip: string;
+    user_agent: string;
+    success: boolean;
+    created_at: number;
   };
 
   type UserSubscribe = {
@@ -809,12 +863,33 @@ declare namespace API {
     updated_at: number;
   };
 
+  type UserSubscribeLog = {
+    id: number;
+    user_id: number;
+    user_subscribe_id: number;
+    token: string;
+    ip: string;
+    user_agent: string;
+    created_at: number;
+  };
+
+  type VerifyCodeConfig = {
+    verify_code_expire_time: number;
+    verify_code_limit: number;
+    verify_code_interval: number;
+  };
+
   type VerifyConfig = {
     turnstile_site_key: string;
     turnstile_secret: string;
     enable_login_verify: boolean;
     enable_register_verify: boolean;
     enable_reset_password_verify: boolean;
+  };
+
+  type VerifyEmailRequest = {
+    email: string;
+    code: string;
   };
 
   type Vless = {

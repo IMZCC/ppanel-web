@@ -4,6 +4,7 @@
   "Auth Control": "Контроль автентифікації",
   "Coupon Management": "Управління купонами",
   "Dashboard": "Панель приладів",
+  "Device": "Пристрій",
   "Document Management": "Управління документами",
   "Email": "Електронна пошта",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Управління заявками",
   "Twitter": "Твіттер",
   "User": "Користувач",
+  "User Detail": "Деталі користувача",
   "User Management": "Управління користувачами"
 }

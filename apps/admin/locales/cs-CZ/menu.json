@@ -4,6 +4,7 @@
   "Auth Control": "Řízení ověřování",
   "Coupon Management": "Správa kupónů",
   "Dashboard": "Přístrojová deska",
+  "Device": "Zařízení",
   "Document Management": "Správa dokumentů",
   "Email": "E-mail",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Správa lístků",
   "Twitter": "Twitter",
   "User": "Uživatel",
+  "User Detail": "Podrobnosti o uživateli",
   "User Management": "Správa uživatelů"
 }

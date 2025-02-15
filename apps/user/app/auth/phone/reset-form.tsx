@@ -35,7 +35,7 @@ export default function ResetForm({
     telephone_area_code: z.string(),
     telephone: z.string(),
     password: z.string(),
-    code: auth?.email?.email_enable_verify ? z.string() : z.string().nullish(),
+    code: auth?.email?.enable_verify ? z.string() : z.string().nullish(),
     cf_token:
       verify.enable_register_verify && verify.turnstile_site_key
         ? z.string()
@@ -93,39 +93,42 @@ export default function ResetForm({
           />
           <FormField
             control={form.control}
-            name='password'
+            name='code'
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder='Enter your password...' type='password' {...field} />
+                  <div className='flex items-center gap-2'>
+                    <Input
+                      placeholder='Enter code...'
+                      type='text'
+                      {...field}
+                      value={field.value as string}
+                    />
+                    <SendCode
+                      type='phone'
+                      params={{
+                        ...form.getValues(),
+                        type: 2,
+                      }}
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-
-          {auth?.email?.email_enable_verify && (
-            <FormField
-              control={form.control}
-              name='code'
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <div className='flex items-center gap-2'>
-                      <Input
-                        placeholder='Enter code...'
-                        type='text'
-                        {...field}
-                        value={field.value as string}
-                      />
-                      <SendCode type='phone' params={form.getValues()} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder='Enter your new password...' type='password' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           {verify.enable_reset_password_verify && (
             <FormField
               control={form.control}

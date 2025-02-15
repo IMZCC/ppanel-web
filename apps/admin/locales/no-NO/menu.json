@@ -4,6 +4,7 @@
   "Auth Control": "Autentiseringskontroll",
   "Coupon Management": "Kupongadministrasjon",
   "Dashboard": "Dashbord",
+  "Device": "Enhet",
   "Document Management": "Dokumenthåndtering",
   "Email": "E-post",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Billettadministrasjon",
   "Twitter": "Twitter",
   "User": "Bruker",
+  "User Detail": "Brukerdetaljer",
   "User Management": "Brukeradministrasjon"
 }

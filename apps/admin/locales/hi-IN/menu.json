@@ -4,6 +4,7 @@
   "Auth Control": "प्रमाणिकरण नियंत्रण",
   "Coupon Management": "कूपन प्रबंधन",
   "Dashboard": "डैशबोर्ड",
+  "Device": "डिवाइस",
   "Document Management": "दस्तावेज़ प्रबंधन",
   "Email": "ईमेल",
   "Facebook": "फेसबुक",
@@ -24,5 +25,6 @@
   "Ticket Management": "टिकट प्रबंधन",
   "Twitter": "ट्विटर",
   "User": "उपयोगकर्ता",
+  "User Detail": "उपयोगकर्ता विवरण",
   "User Management": "उपयोगकर्ता प्रबंधन"
 }

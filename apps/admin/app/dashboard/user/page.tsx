@@ -2,12 +2,14 @@
 
 import { Display } from '@/components/display';
 import { ProTable, ProTableActions } from '@/components/pro-table';
-import { createUser, deleteUser, getUserList, updateUser } from '@/services/admin/user';
+import { createUser, deleteUser, getUserList, updateUserBasicInfo } from '@/services/admin/user';
+import { Badge } from '@workspace/ui/components/badge';
 import { Button } from '@workspace/ui/components/button';
 import { Switch } from '@workspace/ui/components/switch';
 import { ConfirmButton } from '@workspace/ui/custom-components/confirm-button';
 import { formatDate } from '@workspace/ui/utils';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { toast } from 'sonner';
 import { UserDetail } from './user-detail';
@@ -56,10 +58,10 @@ export default function Page() {
               <Switch
                 defaultChecked={row.getValue('enable')}
                 onCheckedChange={async (checked) => {
-                  await updateUser({
+                  await updateUserBasicInfo({
                     ...row.original,
                     enable: checked,
-                  } as unknown as API.UpdateUserRequest);
+                  } as unknown as API.UpdateUserBasiceInfoRequest);
                   toast.success(t('updateSuccess'));
                   ref.current?.refresh();
                 }}
@@ -74,7 +76,17 @@ export default function Page() {
         {
           accessorKey: 'auth_methods',
           header: t('userName'),
-          cell: ({ row }) => row.original.auth_methods?.[0]?.auth_identifier || '--',
+          cell: ({ row }) => {
+            const method = row.original.auth_methods?.[0];
+            return (
+              <div>
+                <Badge className='mr-1 uppercase' title={method?.verified ? t('verified') : ''}>
+                  {method?.auth_type}
+                </Badge>
+                {method?.auth_identifier}
+              </div>
+            );
+          },
         },
         {
           accessorKey: 'balance',
@@ -117,31 +129,9 @@ export default function Page() {
       actions={{
         render: (row) => {
           return [
-            <UserForm<API.UpdateUserRequest>
-              key='edit'
-              trigger={t('edit')}
-              title={t('editUser')}
-              loading={loading}
-              initialValues={row as unknown as API.UpdateUserRequest}
-              onSubmit={async (values) => {
-                setLoading(true);
-                try {
-                  await updateUser({
-                    ...row,
-                    ...values,
-                  });
-                  toast.success(t('updateSuccess'));
-                  ref.current?.refresh();
-                  setLoading(false);
-
-                  return true;
-                } catch (error) {
-                  setLoading(false);
-
-                  return false;
-                }
-              }}
-            />,
+            <Button key='detail' asChild>
+              <Link href={`/dashboard/user/${row.id}`}>{t('edit')}</Link>
+            </Button>,
             <ConfirmButton
               key='edit'
               trigger={<Button variant='destructive'>{t('delete')}</Button>}

@@ -4,6 +4,7 @@
   "Auth Control": "Todennuksen hallinta",
   "Coupon Management": "Kuponkien hallinta",
   "Dashboard": "Kojelauta",
+  "Device": "Laite",
   "Document Management": "Asiakirjojen hallinta",
   "Email": "Sähköposti",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Lipputoiminta",
   "Twitter": "Twitter",
   "User": "Käyttäjä",
+  "User Detail": "Käyttäjän tiedot",
   "User Management": "Käyttäjien hallinta"
 }

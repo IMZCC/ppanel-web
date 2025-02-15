@@ -152,29 +152,6 @@ export async function updateCurrencyConfig(
   });
 }
 
-/** Get email smtp config GET /v1/admin/system/email_config */
-export async function getEmailSmtpConfig(options?: { [key: string]: any }) {
-  return request<API.Response & { data?: API.EmailSmtpConfig }>('/v1/admin/system/email_config', {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/** Update email smtp config PUT /v1/admin/system/email_config */
-export async function updateEmailSmtpConfig(
-  body: API.EmailSmtpConfig,
-  options?: { [key: string]: any },
-) {
-  return request<API.Response & { data?: any }>('/v1/admin/system/email_config', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
 /** Get Node Multiplier GET /v1/admin/system/get_node_multiplier */
 export async function getNodeMultiplier(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.GetNodeMultiplierResponse }>(
@@ -222,47 +199,6 @@ export async function updateNodeConfig(body: API.NodeConfig, options?: { [key: s
       'Content-Type': 'application/json',
     },
     data: body,
-    ...(options || {}),
-  });
-}
-
-/** Get oauth config GET /v1/admin/system/oauth_config */
-export async function getOAuthConfig(options?: { [key: string]: any }) {
-  return request<API.Response & { data?: API.GetOAuthConfigResponse }>(
-    '/v1/admin/system/oauth_config',
-    {
-      method: 'GET',
-      ...(options || {}),
-    },
-  );
-}
-
-/** Update oauth config PUT /v1/admin/system/oauth_config */
-export async function updateOAuthConfig(
-  body: API.UpdateOAuthConfig,
-  options?: { [key: string]: any },
-) {
-  return request<API.Response & { data?: any }>('/v1/admin/system/oauth_config', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** Get OAuth Config By Platform GET /v1/admin/system/oauth/platform */
-export async function getOAuthByPlatform(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.GetOAuthByPlatformParams,
-  options?: { [key: string]: any },
-) {
-  return request<API.Response & { data?: API.OAuthMethod }>('/v1/admin/system/oauth/platform', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
     ...(options || {}),
   });
 }
@@ -333,37 +269,6 @@ export async function updateSiteConfig(body: API.SiteConfig, options?: { [key: s
   });
 }
 
-/** Get sms config GET /v1/admin/system/sms_config */
-export async function getSmsConfig(options?: { [key: string]: any }) {
-  return request<API.Response & { data?: API.SmsConfig }>('/v1/admin/system/sms_config', {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/** Get sms config PUT /v1/admin/system/sms_config */
-export async function updateSmsConfig(body: API.SmsConfig, options?: { [key: string]: any }) {
-  return request<API.Response & { data?: any }>('/v1/admin/system/sms_config', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** Get sms config GET /v1/admin/system/sms_platform */
-export async function getSmsPlatform(options?: { [key: string]: any }) {
-  return request<API.Response & { data?: API.SmsPlatformResponse }>(
-    '/v1/admin/system/sms_platform',
-    {
-      method: 'GET',
-      ...(options || {}),
-    },
-  );
-}
-
 /** Get subscribe config GET /v1/admin/system/subscribe_config */
 export async function getSubscribeConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.SubscribeConfig }>(
@@ -398,56 +303,6 @@ export async function getSubscribeType(options?: { [key: string]: any }) {
   });
 }
 
-/** Get Telegram Config GET /v1/admin/system/telegram_config */
-export async function getTelegramConfig(options?: { [key: string]: any }) {
-  return request<API.Response & { data?: API.TelegramConfig }>('/v1/admin/system/telegram_config', {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/** Update Telegram Config PUT /v1/admin/system/telegram_config */
-export async function updateTelegramConfig(
-  body: API.TelegramConfig,
-  options?: { [key: string]: any },
-) {
-  return request<API.Response & { data?: any }>('/v1/admin/system/telegram_config', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** Test email smtp POST /v1/admin/system/test_email */
-export async function testEmailSmtp(
-  body: API.TestEmailSmtpRequest,
-  options?: { [key: string]: any },
-) {
-  return request<API.Response & { data?: any }>('/v1/admin/system/test_email', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** Test sms send POST /v1/admin/system/test_sms */
-export async function testSmsSend(body: API.SendSmsRequest, options?: { [key: string]: any }) {
-  return request<API.Response & { data?: any }>('/v1/admin/system/test_sms', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
 /** Get Team of Service Config GET /v1/admin/system/tos_config */
 export async function getTosConfig(options?: { [key: string]: any }) {
   return request<API.Response & { data?: API.TosConfig }>('/v1/admin/system/tos_config', {
@@ -459,6 +314,32 @@ export async function getTosConfig(options?: { [key: string]: any }) {
 /** Update Team of Service Config PUT /v1/admin/system/tos_config */
 export async function updateTosConfig(body: API.TosConfig, options?: { [key: string]: any }) {
   return request<API.Response & { data?: any }>('/v1/admin/system/tos_config', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** Get Verify Code Config GET /v1/admin/system/verify_code_config */
+export async function getVerifyCodeConfig(options?: { [key: string]: any }) {
+  return request<API.Response & { data?: API.VerifyCodeConfig }>(
+    '/v1/admin/system/verify_code_config',
+    {
+      method: 'GET',
+      ...(options || {}),
+    },
+  );
+}
+
+/** Update Verify Code Config PUT /v1/admin/system/verify_code_config */
+export async function updateVerifyCodeConfig(
+  body: API.VerifyCodeConfig,
+  options?: { [key: string]: any },
+) {
+  return request<API.Response & { data?: any }>('/v1/admin/system/verify_code_config', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

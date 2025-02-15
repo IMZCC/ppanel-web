@@ -22,27 +22,25 @@ export const useGlobalStore = create<GlobalStore>((set, get) => ({
       site_logo: '',
     },
     verify: {
+      turnstile_site_key: '',
       enable_login_verify: false,
       enable_register_verify: false,
       enable_reset_password_verify: false,
-      turnstile_site_key: '',
     },
     auth: {
-      sms: {
-        sms_enabled: false,
-        sms_limit: 0,
-        sms_interval: 0,
-        sms_expire_time: 0,
+      mobile: {
+        enable: false,
+        enable_whitelist: false,
+        whitelist: [],
       },
       email: {
-        email_enabled: false,
-        email_enable_verify: false,
-        email_enable_domain_suffix: false,
-        email_domain_suffix_list: '',
+        enable: false,
+        enable_verify: false,
+        enable_domain_suffix: false,
+        domain_suffix_list: '',
       },
       register: {
         stop_register: false,
-        enable_trial: false,
         enable_ip_register_limit: false,
         ip_register_limit: 0,
         ip_register_limit_duration: 0,
@@ -56,13 +54,17 @@ export const useGlobalStore = create<GlobalStore>((set, get) => ({
     currency: {
       currency_unit: 'USD',
       currency_symbol: '$',
-      access_key: '',
     },
     subscribe: {
       single_model: false,
       subscribe_path: '',
       subscribe_domain: '',
       pan_domain: false,
+    },
+    verify_code: {
+      verify_code_expire_time: 5,
+      verify_code_limit: 15,
+      verify_code_interval: 60,
     },
     oauth_methods: [],
   },

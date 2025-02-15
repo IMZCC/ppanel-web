@@ -4,6 +4,7 @@
   "Auth Control": "인증 제어",
   "Coupon Management": "쿠폰 관리",
   "Dashboard": "대시보드",
+  "Device": "장치",
   "Document Management": "문서 관리",
   "Email": "이메일",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "티켓 관리",
   "Twitter": "트위터",
   "User": "사용자",
+  "User Detail": "사용자 세부 정보",
   "User Management": "사용자 관리"
 }

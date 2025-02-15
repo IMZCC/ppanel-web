@@ -4,6 +4,7 @@
   "Auth Control": "Controle de Autenticação",
   "Coupon Management": "Gerenciamento de Cupons",
   "Dashboard": "Painel de Controle",
+  "Device": "Dispositivo",
   "Document Management": "Gerenciamento de Documentos",
   "Email": "E-mail",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Gerenciamento de Chamados",
   "Twitter": "Twitter",
   "User": "Usuário",
+  "User Detail": "Detalhes do Usuário",
   "User Management": "Gerenciamento de Usuários"
 }

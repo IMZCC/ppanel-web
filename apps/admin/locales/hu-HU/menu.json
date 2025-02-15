@@ -4,6 +4,7 @@
   "Auth Control": "Hitelesítési vezérlés",
   "Coupon Management": "Kuponkezelés",
   "Dashboard": "Irányítópult",
+  "Device": "Eszköz",
   "Document Management": "Dokumentumkezelés",
   "Email": "E-mail",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "Jegykezelés",
   "Twitter": "Twitter",
   "User": "Felhasználó",
+  "User Detail": "Felhasználói részletek",
   "User Management": "Felhasználókezelés"
 }

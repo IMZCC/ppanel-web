@@ -4,6 +4,7 @@
   "Auth Control": "身份驗證控制",
   "Coupon Management": "優惠券管理",
   "Dashboard": "儀表板",
+  "Device": "裝置",
   "Document Management": "文件管理",
   "Email": "電郵",
   "Facebook": "Facebook",
@@ -24,5 +25,6 @@
   "Ticket Management": "工單管理",
   "Twitter": "Twitter",
   "User": "使用者",
+  "User Detail": "用戶詳情",
   "User Management": "使用者管理"
 }
